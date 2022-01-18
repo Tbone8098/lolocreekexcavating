@@ -4,3 +4,37 @@
     border-radius: 0.5em;
     background: white;
 }
+
+.hamburger{
+    position: relative;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.hamburger span {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 0.25em;
+
+    background: black;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0.25em;
+    background: black;
+}
+
+.hamburger::before {
+    top: 25%;
+}
+.hamburger::after {
+    top: 75%;
+}

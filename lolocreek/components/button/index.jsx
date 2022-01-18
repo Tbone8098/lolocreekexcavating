@@ -1,4 +1,5 @@
 import AddStyle from 'helperFunc/addstyles'
+import Link from 'next/link'
 
 export default function Index(props) {
     const {text, attributes, action=null} = props
@@ -9,18 +10,22 @@ export default function Index(props) {
             'text': 'text-white',
             'padding': 'p-2',
             'rounded': 'rounded',
-            'pointer': 'cursor-pointer'
+            'pointer': 'cursor-pointer',
         }
         return AddStyle(attributes, base)
     }
 
     const Action = () => {
-        console.log(action);
+        if (action['url']){
+            return <div className={Style()}>
+                <Link href={action['url']}>{text}</Link>
+            </div>
+        }
     }
 
     return (
         <div>
-            <span className={Style()} onClick={() => Action()}>{text}</span>
+            {Action()}
         </div>
     )
 }
