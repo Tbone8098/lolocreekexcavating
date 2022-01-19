@@ -54,7 +54,7 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <div className='col-start-12'>
+            <div className='reletive'>
             <SideNav2 />
             </div>
         </div>
