@@ -35,7 +35,7 @@ const Index = () => {
     if (isOpen) {
       return "flex justify-items-center"
     } else {
-      return "hidden"
+      return ""
     }
   }
 
@@ -45,33 +45,52 @@ const Index = () => {
       <div className='flex'>
         {
           isOpen ?
-          <div className='flex w-full'>
-            <div className='flex w-full justify-evenly gap-3'>
-              <ImageBtn
-              img={CompanyIcon}
-              width={50}
-              height={50}
-              />
-              <ImageBtn
-              img={DiggerIcon}
-              width={50}
-              height={50}
+            <div className='flex w-full'>
+              <div className='flex w-full justify-evenly gap-3'>
+                <div>
+                  <ImageBtn
+                    img={CompanyIcon}
+                    width={50}
+                    height={50}
+                  />
+                  <span>About Us</span>
+                </div>
+                <div>
+                  <ImageBtn
+                    img={DiggerIcon}
+                    width={50}
+                    height={50}
+                  />
+                  <span>Services</span>
+                </div>
+              </div>
+              <Image
+                src={ForwardIcon}
+                width={50}
+                height={50}
+                onClick={toggleOpen}
               />
             </div>
+            :
+
+          <div className='flex flex-col gap-3'>
+            <ImageBtn
+                img={CompanyIcon}
+                width={50}
+                height={50}
+                />
+                <ImageBtn
+                img={DiggerIcon}
+                width={50}
+                height={50}
+                />
             <Image
-            src={ForwardIcon}
+            src={BackwardIcon}
             width={50}
             height={50}
             onClick={toggleOpen}
             />
           </div>
-          :
-          <Image 
-          src={BackwardIcon}
-          width={50}
-          height={50}
-          onClick={toggleOpen}
-          />
         }
       </div>
     </div>
