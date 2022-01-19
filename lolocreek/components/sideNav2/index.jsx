@@ -33,7 +33,7 @@ const Index = () => {
 
   const showNavWords = () => {
     if (isOpen) {
-      return "inline-block"
+      return "flex justify-items-center"
     } else {
       return "hidden"
     }
@@ -41,51 +41,37 @@ const Index = () => {
 
   return (
     <div className={cx(StyleCSS.main, 'md:hidden', style())}>
-     
-      <div className='col-span-6'>
-        <table>
-          <tbody>
-            <tr className='flex place-items-center'>
-              <td>
-                <ImageBtn
-                  img={CompanyIcon}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                />
-              </td>
-              <td className={showNavWords()}>About Us</td>
-            </tr>
-            <tr className='flex place-items-center'>
-              <td>
-                <ImageBtn
-                  img={DiggerIcon}
-                  alt="Services"
-                  width={50}
-                  height={50}
-                />
-              </td>
-              <td className={showNavWords()}>Services</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className='col-span-6 justify-self-end'>
+
+      <div className='flex'>
         {
           isOpen ?
-            <Image
-              src={ForwardIcon}
-              onClick={toggleOpen}
+          <div className='flex w-full'>
+            <div className='flex w-full justify-evenly gap-3'>
+              <ImageBtn
+              img={CompanyIcon}
               width={50}
               height={50}
-            />
-            :
-            <Image
-              src={BackwardIcon}
-              onClick={toggleOpen}
+              />
+              <ImageBtn
+              img={DiggerIcon}
               width={50}
               height={50}
+              />
+            </div>
+            <Image
+            src={ForwardIcon}
+            width={50}
+            height={50}
+            onClick={toggleOpen}
             />
+          </div>
+          :
+          <Image 
+          src={BackwardIcon}
+          width={50}
+          height={50}
+          onClick={toggleOpen}
+          />
         }
       </div>
     </div>
