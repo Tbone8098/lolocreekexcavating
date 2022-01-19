@@ -25,7 +25,7 @@ const Index = () => {
 
   const style = () => {
     if (isOpen) {
-      return cx('grid col-span-5 grid-cols-6', StyleCSS.expanded)
+      return cx('grid col-span-5', StyleCSS.expanded)
     } else {
       return 'grid col-span-2 grid-cols-1 justify-items-center'
     }
@@ -41,24 +41,7 @@ const Index = () => {
 
   return (
     <div className={cx(StyleCSS.main, 'md:hidden', style())}>
-      <div className='col-span-6 justify-self-end'>
-        {
-          isOpen ?
-            <Image
-              src={BackwardIcon}
-              onClick={toggleOpen}
-              width={50}
-              height={50}
-            />
-            :
-            <Image
-              src={ForwardIcon}
-              onClick={toggleOpen}
-              width={50}
-              height={50}
-            />
-        }
-      </div>
+     
       <div className='col-span-6'>
         <table>
           <tbody>
@@ -86,6 +69,24 @@ const Index = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className='col-span-6 justify-self-end'>
+        {
+          isOpen ?
+            <Image
+              src={ForwardIcon}
+              onClick={toggleOpen}
+              width={50}
+              height={50}
+            />
+            :
+            <Image
+              src={BackwardIcon}
+              onClick={toggleOpen}
+              width={50}
+              height={50}
+            />
+        }
       </div>
     </div>
   );
