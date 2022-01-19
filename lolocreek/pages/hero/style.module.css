@@ -1,0 +1,12 @@
+.main {
+    background-image: url('../../images/homePageBg.jpg');
+    background-size: cover;
+    background-position: 75% 50%;
+}
+
+.infoBox {
+    padding: 1em;
+    text-align: center;
+    background: white;
+    border: 0.15em solid black;
+}
