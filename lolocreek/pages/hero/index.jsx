@@ -31,9 +31,9 @@ export default function Index() {
                 <Header />
             </div>
             {/* sideNav for mobile */}
-            <SideNav2 />
+            
 
-            <div className='col-span-8 col-start-4 grid'>
+            <div className='col-span-8 grid'>
                 <div className='place-self-center'>
                     <div className='mb-3'>
                         <Logo />
@@ -53,6 +53,9 @@ export default function Index() {
                         />
                     </div>
                 </div>
+            </div>
+            <div className='col-start-12'>
+            <SideNav2 />
             </div>
         </div>
     )
