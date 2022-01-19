@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import Image from "next/image";
 
 // style
 import StyleCSS from './style.module.css'
@@ -8,7 +9,10 @@ import Header from 'components/header'
 import Logo from 'components/logo'
 import Button from 'components/button'
 import SideNav2 from 'components/sideNav2';
-;
+
+
+// images
+// import Logo from 'images/lolocreeklogo.png';
 
 
 export default function Index() {
@@ -17,9 +21,9 @@ export default function Index() {
         return (
             <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
                 <h1 className='text-5xl md:text-8xl'>Lolo Excavating</h1>
-                <h2 className='text-2xl'>(123) 456-7890</h2>
+                <h2 className='text-2xl'>406-546-9948</h2>
                 <h2 className='text-md'>brandon@lolocreekexcavating.com</h2>
-                <h2 className='text-md'>1234 Somewhere in Montana Lane</h2>
+                <h2 className='text-md'>6940 Mormon Creek Rd. Lolo MT 59847</h2>
             </div>
         )
     }
@@ -33,10 +37,13 @@ export default function Index() {
             
 
             {/* sideNav for mobile */}
-            <div className='col-span-12 grid'>
+            <div className='col-span-9 col-start-2 grid'>
                 <div className='place-self-center'>
                     <div className='mb-3'>
-                        <Logo />
+                        <Logo
+                        width={150}
+                        height={150}
+                        />
                     </div>
                     {infoBlock()}
                     <div className='flex justify-end'>
@@ -45,7 +52,8 @@ export default function Index() {
                             attributes={{
                                 'align': 'place-self-end',
                                 'background': 'bg-white',
-                                'text': 'text-black text-4xl'
+                                'text': 'text-black text-4xl',
+                                'border': 'border border-black border-2'
                             }}
                             action={{
                                 url: '/contactus'
