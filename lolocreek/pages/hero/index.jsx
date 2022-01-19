@@ -30,9 +30,9 @@ export default function Index() {
             <div className='hidden md:inline-block col-span-12 pt-4'>
                 <Header />
             </div>
-            {/* sideNav for mobile */}
             
 
+            {/* sideNav for mobile */}
             <div className='col-span-12 grid'>
                 <div className='place-self-center'>
                     <div className='mb-3'>
