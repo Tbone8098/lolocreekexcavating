@@ -27,7 +27,7 @@ const Index = () => {
     if (isOpen) {
       return cx('grid col-span-5', StyleCSS.expanded)
     } else {
-      return 'grid col-span-2 grid-cols-1 justify-items-center'
+      return 'grid grid-cols-1 justify-items-center'
     }
   }
 

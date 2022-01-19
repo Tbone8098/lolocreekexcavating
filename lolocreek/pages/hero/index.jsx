@@ -33,7 +33,7 @@ export default function Index() {
             {/* sideNav for mobile */}
             
 
-            <div className='col-span-8 grid'>
+            <div className='col-span-12 grid'>
                 <div className='place-self-center'>
                     <div className='mb-3'>
                         <Logo />
