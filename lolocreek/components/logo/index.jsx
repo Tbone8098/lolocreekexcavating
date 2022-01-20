@@ -9,6 +9,8 @@ import Logo from 'images/lolocreeklogo.png';
 
 export default function Index(props) {
     const {width, height} = props
+
+
     return (
         <div className={cx(StyleCSS.logo, 'text-center text-2xl')}>
             <Image

@@ -52,6 +52,9 @@ const Index = () => {
                     img={CompanyIcon}
                     width={50}
                     height={50}
+                    action={{
+                      url:'/about'
+                    }}
                   />
                   <span>About Us</span>
                 </div>
@@ -60,6 +63,9 @@ const Index = () => {
                     img={DiggerIcon}
                     width={50}
                     height={50}
+                    action={{
+                      url:'/contactus'
+                    }}
                   />
                   <span>Services</span>
                 </div>
@@ -78,11 +84,17 @@ const Index = () => {
                 img={CompanyIcon}
                 width={50}
                 height={50}
+                action={{
+                  url:'/about'
+                }}
                 />
                 <ImageBtn
                 img={DiggerIcon}
                 width={50}
                 height={50}
+                action={{
+                  url:'/contactus'
+                }}
                 />
             <Image
             src={BackwardIcon}
