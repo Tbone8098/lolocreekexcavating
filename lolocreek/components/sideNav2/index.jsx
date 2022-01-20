@@ -4,6 +4,7 @@ import cx from "classnames";
 
 // components
 import ImageBtn from 'components/imageBtn';
+import data from './data';
 
 // styles
 import StyleCSS from "./style.module.css";
@@ -41,68 +42,66 @@ const Index = () => {
 
   return (
     <div className={cx(StyleCSS.main, 'md:hidden', style())}>
-
       <div className='flex'>
         {
           isOpen ?
             <div className='flex w-full'>
-              <div className='flex w-full justify-evenly gap-3'>
-                <div>
-                  <ImageBtn
-                    img={CompanyIcon}
-                    width={50}
-                    height={50}
-                    action={{
-                      url:'/about'
-                    }}
-                  />
-                  <span>About Us</span>
-                </div>
-                <div>
-                  <ImageBtn
-                    img={DiggerIcon}
-                    width={50}
-                    height={50}
-                    action={{
-                      url:'/contactus'
-                    }}
-                  />
-                  <span>Services</span>
-                </div>
+              <div className='flex w-full justify-evenly gap-3 flex-wrap'>
+                {
+                  data.map((item) => {
+                    return (
+                      <div>
+                        <ImageBtn
+                          img={item.img}
+                          alt={item.alt}
+                          width={item.width}
+                          height={item.height}
+                          action={{
+                            url: item.url
+                          }}
+                        />
+                        <span>{item.desc}</span>
+                      </div>
+                    )
+                  })
+                }
               </div>
+              <div className='self-end'>
+                <Image
+                  src={ForwardIcon}
+                  width={50}
+                  height={50}
+                  onClick={toggleOpen}
+                />
+              </div>
+            </div>
+            :
+
+            <div className='flex flex-col gap-3'>
+              {
+                data.map((item) => {
+                  return (
+                    <div>
+                      <ImageBtn
+                        img={item.img}
+                        alt={item.alt}
+                        width={item.width}
+                        height={item.height}
+                        action={{
+                          url: item.url
+                        }}
+                      />
+                    </div>
+                  )
+                })
+              }
               <Image
-                src={ForwardIcon}
+                src={BackwardIcon}
                 width={50}
                 height={50}
                 onClick={toggleOpen}
               />
             </div>
-            :
-
-          <div className='flex flex-col gap-3'>
-            <ImageBtn
-                img={CompanyIcon}
-                width={50}
-                height={50}
-                action={{
-                  url:'/about'
-                }}
-                />
-                <ImageBtn
-                img={DiggerIcon}
-                width={50}
-                height={50}
-                action={{
-                  url:'/contactus'
-                }}
-                />
-            <Image
-            src={BackwardIcon}
-            width={50}
-            height={50}
-            onClick={toggleOpen}
-            />
-          </div>
         }
       </div>
     </div>
