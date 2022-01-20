@@ -7,25 +7,14 @@ import StyleCSS from './style.module.css'
 
 // components
 import Button from 'components/button'
-import SideNav from 'components/sideNav'
+import Hamburger from 'components/hamburger';
 
 
 export default function Index() {
-    const [isOpen, setIsOpen] = useState(false)
-
-    const toggle = () => {
-        let isOpenClone = !isOpen
-        setIsOpen(isOpenClone)
-    }
 
     return (
         <div id='navbar__wrapper'>
-            {
-                isOpen && <SideNav />
-            }
-            <div id='navbar__mobile' className='grid md:hidden mx-4' onClick={toggle}>
-                <div className={cx(StyleCSS.hamburger)}><span></span></div>
-            </div>
+            <Hamburger />
             <div className={cx('hidden md:grid grid-cols-2 mx-3', StyleCSS.nav)} id='navbar__normal'>
                 <div className='self-center'>
                     logo

@@ -8,6 +8,9 @@ import Header from 'components/header'
 import Logo from 'components/logo'
 import Button from 'components/button'
 
+// image
+import LoloLogo from 'images/lolocreeklogo.png';
+
 export default function Index() {
 
     const infoBlock = () => {
@@ -23,26 +26,15 @@ export default function Index() {
 
     return (
         <div className={cx(StyleCSS.main, 'h-screen grid grid-cols-12')}>
-            <div className='col-span-12 h-min pt-4'>
+            <div className='col-span-12'>
                 <Header />
             </div>
-            <div className='col-span-8 col-start-3 md:col-start-2 md:col-span-5 grid'>
-                <div className='flex flex-col gap-3'>
-                    <div className='md:hidden'>
-                        <Logo />
-                    </div>
+            <div className='col-span-10 col-start-2'>
+                <div>
                     {infoBlock()}
-                    <div className='lg:hidden self-end'>
-                        <Button
-                            text="Contact Us"
-                            action={{
-                                url: '/contactus'
-                            }}
-                            attributes={{
-                                'text': 'text-3xl text-white'
-                            }}
-                        />
-                    </div>
+                    <Button 
+                    text="Contact Me"
+                    />
                 </div>
             </div>
         </div>

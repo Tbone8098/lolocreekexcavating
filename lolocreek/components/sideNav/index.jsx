@@ -7,10 +7,14 @@ import cx from 'classnames'
 import StyleCSS from './style.module.css'
 import MainCSS from 'styles/main.module.css'
 
+// components
+import Hamburger from 'components/hamburger';
+
 export default function Index() {
     return (
         <div className={StyleCSS.sidenav__wrapper}>
             <div className={StyleCSS.sidenav__container}>
+                <Hamburger />
                 <div className={StyleCSS.sidenav__menu}>
                     <ul className={cx(MainCSS.ul__menu__col)}>
                         <li className='text-xl'><Link href='/about'>About Us</Link></li>
