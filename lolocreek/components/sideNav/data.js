@@ -4,7 +4,7 @@ import CompanyIcon from 'icons/company.png';
 import HomeIcon from 'icons/home.png';
 
 
-export default data = [
+const data = [
     {
         title: 'Home',
         src: HomeIcon,
@@ -38,3 +38,5 @@ export default data = [
         url: 'contact_us'
     },
 ]
+
+export default {data}

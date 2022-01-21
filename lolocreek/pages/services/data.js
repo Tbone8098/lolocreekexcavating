@@ -2,7 +2,7 @@ import SnowRemove from 'icons/snowRemoval.png';
 import SightWork from 'icons/sitework.png';
 import Excavator from 'icons/digger.png';
 
-export default data = [
+const data = [
     {
         title: 'Site Work',
         src: SightWork,
@@ -48,3 +48,5 @@ export default data = [
         content: 'We have equipment to plow and clear both large or small projects. With our rubber track skid steer, we can clear a lot, road or driveway with ease while being gentle on whatever the surface is. If you have large piles that need to be moved on site or hauled off, we got you.'
     },
 ]
+
+export default {data}
