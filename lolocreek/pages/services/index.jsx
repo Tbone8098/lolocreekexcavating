@@ -40,9 +40,8 @@ export default function Index() {
                             data.map((item, key) => {
                                 return (
                                     <li key={key}>
-                                        <div className={style(item)} key={key}>
+                                        <div className={style(item)}>
                                             <Image
-                                                key={key}
                                                 src={item.src}
                                                 width={item.width}
                                                 height={item.height}

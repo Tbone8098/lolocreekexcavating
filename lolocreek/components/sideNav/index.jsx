@@ -44,11 +44,12 @@ const Index = () => {
                 </div>
                 <ul className='m-auto'>
                     {
-                        data.map((item) => {
+                        data.map((item, key) => {
                             return (
-                                <li className='mb-3'>
+                                <li className='mb-3' key={key}>
                                     <div className='place-items-center flex gap-2'>
                                         <Image 
+                                        alt={item.alt}
                                         src={item.src}
                                         width={item.width}
                                         height={item.height}
