@@ -2,7 +2,7 @@
   "name": "lolocreek",
   "private": true,
   "engines": {
-    "node": "16.13.0"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "next dev",
