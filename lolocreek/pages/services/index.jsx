@@ -45,6 +45,7 @@ export default function Index() {
                                                 src={item.src}
                                                 width={item.width}
                                                 height={item.height}
+                                                alt={item.alt}
                                                 onClick={() => actionServiceHandler(item)}
                                             />
                                         </div>
@@ -56,7 +57,7 @@ export default function Index() {
                 </div>
                 <div>
                     <h3 className='text-3xl text-center underline mb-3'>{serviceInfoTitle}</h3>
-                    <p>{serviceInfo}</p>
+                    <span>{serviceInfo}</span>
                 </div>
             </div>
         </div>

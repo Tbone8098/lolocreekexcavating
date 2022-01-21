@@ -8,6 +8,7 @@ export const data = [
         src: SightWork,
         width: 50,
         height: 50,
+        alt: 'Site Work',
         content: <div>
             <ul className='list-disc ml-3'>
                 <li>Grading</li>
@@ -23,6 +24,7 @@ export const data = [
         src: Excavator,
         width: 50,
         height: 50,
+        alt: 'Excavation work',
         content: <div>
             <ul className='list-disc ml-3'>
                 <li>Footings</li>
@@ -42,6 +44,7 @@ export const data = [
         src: SnowRemove,
         width: 50,
         height: 50,
+        alt: 'Snow Removal',
         content: 'We have equipment to plow and clear both large or small projects. With our rubber track skid steer, we can clear a lot, road or driveway with ease while being gentle on whatever the surface is. If you have large piles that need to be moved on site or hauled off, we got you.'
     },
 ]

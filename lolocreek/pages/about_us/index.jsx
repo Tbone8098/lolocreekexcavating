@@ -17,6 +17,7 @@ export default function Index() {
                         src={Logo}
                         width={200}
                         height={170}
+                        alt='Lolo creek excavating logo'
                     />
                 </div>
                 <p>
