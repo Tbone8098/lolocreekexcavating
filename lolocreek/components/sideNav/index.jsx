@@ -36,6 +36,7 @@ const Index = () => {
             <div className={cx(StyleCSS.menu, 'flex flex-col')}>
                 <div className='mt-4'>
                     <Image
+                    alt='close side nav'
                     src={BackwardIcon}
                     width={50}
                     height={50}

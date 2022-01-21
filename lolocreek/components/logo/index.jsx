@@ -13,6 +13,7 @@ export default function Index(props) {
             src={img}
             width={width}
             height={height}
+            alt='logo'
             />
         </div>
     )
