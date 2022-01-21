@@ -1,23 +1,49 @@
-.sidenav__wrapper {
+.wrapper {
+    margin: 1em;
+    position: relative;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    /* border: 1px solid black; */
+}
+
+
+.hamburger span{
+    position: absolute;
+    display: block;
+    top: 50%;
+
+    height: 3px;
+    width: 100%;
+    background: black;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: black;
+}
+
+.hamburger::before{
+    top: 25%;
+}
+.hamburger::after{
+    top: 75%;
+}
+
+.menu {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 45%;
     height: 100vh;
-
-    background: rgba(0, 0, 0, 0.445);
-}
-
-.sidenav__container {
-    position: relative;
-    width: 50%;
-    height: 100%;
-
+    
     background: white;
-}
-
-.sidenav__menu {
-    position: relative;
-    top: 10%;
-    /* left: 10%; */
+    border-right: 0.2em solid black;
+    box-shadow: 0.15em 0 0.15em;
+    z-index: 2;
 }

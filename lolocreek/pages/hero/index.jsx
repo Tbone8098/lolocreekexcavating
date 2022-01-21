@@ -8,6 +8,9 @@ import Header from 'components/header'
 import Logo from 'components/logo'
 import Button from 'components/button'
 
+// image
+import LoloLogo from 'images/lolocreeklogo.png';
+
 export default function Index() {
 
     const infoBlock = () => {
@@ -15,31 +18,33 @@ export default function Index() {
             <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
                 <h1 className='text-5xl md:text-8xl'>Lolo Excavating</h1>
                 <h2 className='text-2xl'>(123) 456-7890</h2>
-                <h2 className='text-md'>brandon@lolocreekexcavating.com</h2>
-                <h2 className='text-md'>1234 Somewhere in Montana Lane</h2>
+                <h2 className='text-sm'>brandon@lolocreekexcavating.com</h2>
+                <h2 className='text-sm'>1234 Somewhere in Montana Lane</h2>
             </div>
         )
     }
 
     return (
         <div className={cx(StyleCSS.main, 'h-screen grid grid-cols-12')}>
-            <div className='col-span-12 h-min pt-4'>
+            <div className='col-span-12'>
                 <Header />
             </div>
-            <div className='col-span-8 col-start-3 md:col-start-2 md:col-span-5 grid'>
-                <div className='flex flex-col gap-3'>
-                    <div className='md:hidden'>
-                        <Logo />
+            <div className='col-span-10 col-start-2'>
+                <div>
+                    <div className='mb-3'>
+                        <Logo 
+                        img={LoloLogo}
+                        />
                     </div>
-                    {infoBlock()}
-                    <div className='lg:hidden self-end'>
+                    <div className='mb-3'>
+                        {infoBlock()}
+                    </div>
+                    <div>
+
                         <Button
-                            text="Contact Us"
+                            text="Contact Me"
                             action={{
-                                url: '/contactus'
-                            }}
-                            attributes={{
-                                'text': 'text-3xl text-white'
+                                url: '/contactme'
                             }}
                         />
                     </div>

@@ -1,23 +1,79 @@
-import { useState } from 'react'
-import Link from 'next/link'
-import cx from 'classnames'
-// import {Toggle} from './logic'
+import cx from 'classnames';
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-// style
-import StyleCSS from './style.module.css'
-import MainCSS from 'styles/main.module.css'
+// styles
+import StyleCSS from './style.module.css';
 
-export default function Index() {
-    return (
-        <div className={StyleCSS.sidenav__wrapper}>
-            <div className={StyleCSS.sidenav__container}>
-                <div className={StyleCSS.sidenav__menu}>
-                    <ul className={cx(MainCSS.ul__menu__col)}>
-                        <li className='text-xl'><Link href='/about'>About Us</Link></li>
-                        <li className='text-xl'><Link href='/services'>Services</Link></li>
-                    </ul>
+// images
+import BackwardIcon from 'icons/backward.png';
+import ForwardIcon from 'icons/forward.png';
+
+// components
+import {data} from './data';
+
+const Index = () => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggleOpen = () => {
+        let temp = isOpen
+        setIsOpen(!temp)
+    }
+    
+    const hamburger = () => {
+        return (
+            <div className={cx(StyleCSS.wrapper)} onClick={toggleOpen}>
+                <div className={cx(StyleCSS.hamburger)}>
+                    <span></span>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+    
+    const menu = () => {
+        return (
+            <div className={cx(StyleCSS.menu, 'flex flex-col')}>
+                <div className='mt-4'>
+                    <Image
+                    src={BackwardIcon}
+                    width={50}
+                    height={50}
+                    onClick={toggleOpen}
+                    />
+                </div>
+                <ul className='m-auto'>
+                    {
+                        data.map((item) => {
+                            return (
+                                <li className='mb-3'>
+                                    <div className='place-items-center flex gap-2'>
+                                        <Image 
+                                        src={item.src}
+                                        width={item.width}
+                                        height={item.height}
+                                        />
+                                        <Link href={item.url}>
+                                            {item.title}
+                                        </Link>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+        )
+    }
+
+    return (
+        <>
+            {
+                isOpen && menu()
+            }
+            {hamburger()}
+        </>
+    );
 }
+
+export default Index;

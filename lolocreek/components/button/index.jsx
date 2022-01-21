@@ -2,7 +2,7 @@ import AddStyle from 'helperFunc/addstyles'
 import Link from 'next/link'
 
 export default function Index(props) {
-    const {text, attributes, action=null} = props
+    const {text, attributes, action={}} = props
 
     const Style = () => {
         let base = {
@@ -11,6 +11,7 @@ export default function Index(props) {
             'padding': 'p-2',
             'rounded': 'rounded',
             'pointer': 'cursor-pointer',
+            'display': 'inline-block'
         }
         return AddStyle(attributes, base)
     }
@@ -19,6 +20,10 @@ export default function Index(props) {
         if (action['url']){
             return <div className={Style()}>
                 <Link href={action['url']}>{text}</Link>
+            </div>
+        } else {
+            return <div className={Style()}>
+                <button>{text}</button>
             </div>
         }
     }
