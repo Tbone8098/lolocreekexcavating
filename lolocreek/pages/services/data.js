@@ -2,7 +2,7 @@ import SnowRemove from 'icons/snowRemoval.png';
 import SightWork from 'icons/sitework.png';
 import Excavator from 'icons/digger.png';
 
-export const data = [
+export default data = [
     {
         title: 'Site Work',
         src: SightWork,

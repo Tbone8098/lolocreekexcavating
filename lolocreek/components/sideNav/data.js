@@ -4,7 +4,7 @@ import CompanyIcon from 'icons/company.png';
 import HomeIcon from 'icons/home.png';
 
 
-export const data = [
+export default data = [
     {
         title: 'Home',
         src: HomeIcon,
