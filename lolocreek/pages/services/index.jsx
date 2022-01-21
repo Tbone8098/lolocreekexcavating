@@ -14,14 +14,14 @@ export default function Index() {
         setserviceInfo(data[0].content)
         setServiceInfoTitle(data[0].title)
     }, [])
-    
+
     const actionServiceHandler = (service) => {
         setServiceInfoTitle(service.title)
         setserviceInfo(service.content)
     }
 
     const style = (service) => {
-        if (service.title === serviceInfoTitle){
+        if (service.title === serviceInfoTitle) {
             return "border-b-4 border-black mb-3"
         } else {
             return "mb-3"
@@ -40,8 +40,9 @@ export default function Index() {
                             data.map((item, key) => {
                                 return (
                                     <li key={key}>
-                                        <div className={style(item)}>
+                                        <div className={style(item)} key={key}>
                                             <Image
+                                                key={key}
                                                 src={item.src}
                                                 width={item.width}
                                                 height={item.height}
