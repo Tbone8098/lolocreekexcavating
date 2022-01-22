@@ -4,7 +4,7 @@ import CompanyIcon from 'icons/company.png';
 import HomeIcon from 'icons/home.png';
 
 
-const data = [
+export const data = [
     {
         title: 'Home',
         src: HomeIcon,
@@ -39,4 +39,3 @@ const data = [
     },
 ]
 
-export default {data}

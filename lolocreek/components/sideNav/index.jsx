@@ -11,7 +11,7 @@ import BackwardIcon from 'icons/backward.png';
 import ForwardIcon from 'icons/forward.png';
 
 // components
-import {data} from './data';
+import { data } from './data';
 
 const Index = () => {
     const [isOpen, setIsOpen] = useState(false)

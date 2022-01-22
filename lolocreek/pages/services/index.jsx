@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 // data
 import { data } from './data';
 
-
 export default function Index() {
     const [serviceInfo, setserviceInfo] = useState('')
     const [serviceInfoTitle, setServiceInfoTitle] = useState('')

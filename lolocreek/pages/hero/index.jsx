@@ -9,7 +9,7 @@ import Logo from 'components/logo'
 import Button from 'components/button'
 
 // image
-import LoloLogo from 'images/lolocreeklogo.png';
+import LoloLogo from 'images/logoWhite.png';
 
 export default function Index() {
 

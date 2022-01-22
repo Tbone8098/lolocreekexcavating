@@ -2,7 +2,7 @@ import Header from 'components/header';
 import Image from 'next/image';
 
 // images
-import Logo from 'images/lolocreeklogo.png';
+import Logo from 'images/logoWhite.png';
 
 export default function Index() {
     return (
@@ -15,8 +15,6 @@ export default function Index() {
                 <div className=''>
                     <Image
                         src={Logo}
-                        width={200}
-                        height={170}
                         alt='Lolo creek excavating logo'
                     />
                 </div>
