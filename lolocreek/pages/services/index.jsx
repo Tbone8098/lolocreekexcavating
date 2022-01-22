@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 // data
-import { data } from './data';
+import { data } from 'datafiles/serviceData';
 
 export default function Index() {
     const [serviceInfo, setserviceInfo] = useState('')
