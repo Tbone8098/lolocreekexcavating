@@ -1,9 +1,11 @@
-import Header from 'components/header';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 // data
 import { data } from 'datafiles/serviceData';
+
+// components
+import { Footer, Header } from 'components';
 
 export default function Index() {
     const [serviceInfo, setserviceInfo] = useState('')
@@ -28,36 +30,41 @@ export default function Index() {
     }
 
     return (
-        <div className='grid grid-cols-12'>
-            <div className='col-span-12'>
-                <Header />
+        <div className='flex flex-col h-screen'>
+            <div className='grid grid-cols-12'>
+                <div className='col-span-12'>
+                    <Header />
+                </div>
+                <div className="col-span-10 col-start-2">
+                    <div>
+                        <ul className='flex justify-evenly'>
+                            {
+                                data.map((item, key) => {
+                                    return (
+                                        <li key={key}>
+                                            <div className={style(item)}>
+                                                <Image
+                                                    src={item.src}
+                                                    width={item.width}
+                                                    height={item.height}
+                                                    alt={item.alt}
+                                                    onClick={() => actionServiceHandler(item)}
+                                                />
+                                            </div>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className='text-3xl text-center underline mb-3'>{serviceInfoTitle}</h3>
+                        <span>{serviceInfo}</span>
+                    </div>
+                </div>
             </div>
-            <div className="col-span-10 col-start-2">
-                <div>
-                    <ul className='flex justify-evenly'>
-                        {
-                            data.map((item, key) => {
-                                return (
-                                    <li key={key}>
-                                        <div className={style(item)}>
-                                            <Image
-                                                src={item.src}
-                                                width={item.width}
-                                                height={item.height}
-                                                alt={item.alt}
-                                                onClick={() => actionServiceHandler(item)}
-                                            />
-                                        </div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-                <div>
-                    <h3 className='text-3xl text-center underline mb-3'>{serviceInfoTitle}</h3>
-                    <span>{serviceInfo}</span>
-                </div>
+            <div className='mt-auto'>
+                <Footer />
             </div>
         </div>
     )
