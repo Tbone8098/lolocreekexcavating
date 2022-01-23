@@ -3,7 +3,7 @@ import Footer from 'components/footer';
 import Header from 'components/header';
 import Logo from 'components/logo';
 import SideNav from 'components/sideNav';
-import Head from 'components/head';
+import Head from 'components/myHead';
 import Modal from 'components/modal';
 
 
