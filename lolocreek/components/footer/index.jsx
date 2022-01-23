@@ -60,6 +60,7 @@ const Index = () => {
                     btnText={
                         <Image
                             src={LogoBlack}
+                            alt='lolo creek excavating logo'
                         />
                     }
                     modal={modalContent()}
