@@ -4,7 +4,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+          'libre': ['Libre Baskerville'],
+          'cinzel': ['Cinzel'],
+          'bree': ['Bree Serif']
+      }
+    },
   },
   plugins: [],
 }

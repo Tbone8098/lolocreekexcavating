@@ -6,7 +6,6 @@ const addStyle = (props, base=null) => {
     for (const attribute in props) {
         base[attribute] = props[attribute]
     }
-    
     for (const attribute in base) {
         string += " " + base[attribute]
     }

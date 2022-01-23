@@ -3,6 +3,8 @@ import Footer from 'components/footer';
 import Header from 'components/header';
 import Logo from 'components/logo';
 import SideNav from 'components/sideNav';
+import Head from 'components/head';
+import Modal from 'components/modal';
 
 
 export {
@@ -10,5 +12,7 @@ export {
     Footer,
     Header,
     Logo,
-    SideNav
+    SideNav,
+    Modal,
+    Head,
 }

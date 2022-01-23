@@ -8,7 +8,7 @@ import StyleCSS from './style.module.css';
 
 // images
 import BackwardIcon from 'icons/backward.png';
-import ForwardIcon from 'icons/forward.png';
+// import ForwardIcon from 'icons/forward.png';
 
 // components
 import { data } from 'datafiles/sideNavData';

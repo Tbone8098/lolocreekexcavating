@@ -4,7 +4,7 @@ import cx from 'classnames'
 import StyleCSS from './style.module.css'
 
 // components
-import { Header, Logo, Button, Footer } from 'components';
+import { Header, Logo, Button, Footer, Head } from 'components';
 
 // image
 import LoloLogo from 'images/logoWhite.png';
@@ -15,15 +15,16 @@ export default function Index() {
         return (
             <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
                 {/* <h1 className='text-5xl md:text-8xl'>Lolo Excavating</h1> */}
-                <h2 className='text-2xl'>(123) 456-7890</h2>
-                <h2 className='text-sm'>brandon@lolocreekexcavating.com</h2>
-                <h2 className='text-sm'>1234 Somewhere in Montana Lane</h2>
+                <p className={cx('text-2xl font-cinzel')}>(123) 456-7890</p>
+                <p className='text-sm font-bree'>brandon@lolocreekexcavating.com</p>
+                <p className='text-sm font-bree'>1234 Somewhere in Montana Lane</p>
             </div>
         )
     }
 
     return (
         <div className={cx(StyleCSS.main, 'flex flex-col h-screen')}>
+            <Head />
             <div className={cx('grid grid-cols-12')}>
                 <div className='col-span-12'>
                     <Header />
