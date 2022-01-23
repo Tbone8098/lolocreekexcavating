@@ -4,7 +4,7 @@ import cx from 'classnames'
 import StyleCSS from './style.module.css'
 
 // components
-import { Header, Logo, Button, Footer, Head } from 'components';
+import { Header, Logo, Button, Footer } from 'components';
 
 // image
 import LoloLogo from 'images/logoWhite.png';
@@ -24,7 +24,6 @@ export default function Index() {
 
     return (
         <div className={cx(StyleCSS.main, 'flex flex-col h-screen')}>
-            <Head />
             <div className={cx('grid grid-cols-12')}>
                 <div className='col-span-12'>
                     <Header />
