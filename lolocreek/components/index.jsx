@@ -13,5 +13,4 @@ export {
     Logo,
     SideNav,
     Modal,
-    Head,
 }
