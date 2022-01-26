@@ -7,7 +7,7 @@ export default function Index(props) {
     const Style = () => {
         let base = {
             'background': 'bg-black',
-            'text': 'text-white',
+            'text': 'text-lolo-green font-bold',
             'padding': 'p-2',
             'rounded': 'rounded',
             'pointer': 'cursor-pointer',

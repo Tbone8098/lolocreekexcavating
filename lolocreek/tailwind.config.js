@@ -5,6 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'lolo': {
+          'green': '#639438'
+        }
+      },
       fontFamily: {
           'libre': ['Libre Baskerville'],
           'cinzel': ['Cinzel'],

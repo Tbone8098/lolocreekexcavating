@@ -40,8 +40,8 @@ const Index = () => {
     }
 
     return (
-        <div className="grid grid-cols-2 bg-black text-white mt-3">
-            <div className="p-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 bg-black text-lolo-green mt-3">
+            <div className="p-3 flex self-center">
                 <ul>
                     <li>
                         <Link href='/about_us'>About Us</Link>
@@ -55,12 +55,19 @@ const Index = () => {
                     /></li>
                 </ul>
             </div>
-            <div className='p-2'>
+            <div className='hidden md:flex flex-col place-self-center text-center'>
+                <p>(406) 546-9948</p>
+                <p>brandon@lolocreekexcavating.com</p>
+                <p>Address is 6940 Mormon Creek Rd. Lolo MT 59847</p>
+            </div>
+            <div className='p-2 flex justify-end'>
                 <Modal
                     btnText={
                         <Image
                             src={LogoBlack}
                             alt='lolo creek excavating logo'
+                            width={200}
+                            height={110}
                         />
                     }
                     modal={modalContent()}
