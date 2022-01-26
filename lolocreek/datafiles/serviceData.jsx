@@ -5,6 +5,7 @@ import Excavator from 'icons/digger.png';
 export const data = [
     {
         title: 'Site Work',
+        subtitle: <span className='text-center'>Site <br />Work</span>,
         src: SightWork,
         width: 50,
         height: 50,
@@ -22,6 +23,7 @@ export const data = [
     {
         title: 'Excavation',
         src: Excavator,
+        subtitle: <span className='text-center'>Excavation</span>,
         width: 50,
         height: 50,
         alt: 'Excavation',
@@ -42,6 +44,7 @@ export const data = [
     {
         title: 'Snow Removal',
         src: SnowRemove,
+        subtitle: <span className='text-center'>Snow <br />Removal</span>,
         width: 50,
         height: 50,
         alt: 'Snow Removal',
