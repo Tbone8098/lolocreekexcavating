@@ -24,7 +24,7 @@ export const data = [
         src: Excavator,
         width: 50,
         height: 50,
-        alt: 'Excavation work',
+        alt: 'Excavation',
         content: <div>
             <ul className='list-disc ml-3'>
                 <li>Footings</li>

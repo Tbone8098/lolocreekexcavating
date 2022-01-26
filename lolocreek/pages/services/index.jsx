@@ -50,6 +50,7 @@ export default function Index() {
                                                     alt={item.alt}
                                                     onClick={() => actionServiceHandler(item)}
                                                 />
+                                                {/* <span>{item.alt}</span> */}
                                             </div>
                                         </li>
                                     )
