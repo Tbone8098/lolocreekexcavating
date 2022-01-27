@@ -39,7 +39,7 @@ export default function Index() {
                 <div className='col-span-12 md:mt-5 mb-8'>
                     <Header page="services" />
                 </div>
-                <div className="col-span-10 col-start-2 md:grid md:grid-cols-4 md:mt-28">
+                <div className="col-span-10 col-start-2 md:hidden">
                     <div>
                         <ul className='flex justify-evenly'>
                             {
@@ -55,7 +55,7 @@ export default function Index() {
                                                         alt={item.alt}
 
                                                     />
-                                                    <span className='text-xm '>{item.subtitle}</span>
+                                                    <span className='text-xm'>{item.subtitle}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -64,10 +64,22 @@ export default function Index() {
                             }
                         </ul>
                     </div>
-                    <div className='md:col-span-2 md:col-start-3'>
+                    <div className='md:col-span-2 md:col-start-3 mt-10'>
                         <h3 className='text-3xl text-center underline mb-3'>{serviceInfoTitle}</h3>
                         <span>{serviceInfo}</span>
                     </div>
+                </div>
+                <div className='hidden md:col-span-8 md:col-start-3 md:flex md:justify-evenly md:flex-wrap'>
+                    {
+                        data.map((item, key) => {
+                            return (
+                                <div key={key} className='m-3 p-3 border drop-shadow-lg md:w-full'>
+                                    <h3 className='text-3xl font-bold text-center underline mb-3'>{item.title}</h3>
+                                    <p>{item.content}</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className='mt-auto'>

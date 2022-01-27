@@ -11,30 +11,34 @@ const Index = () => {
 
     const modalContent = () => {
         return (
-            <div className='text-black grid p-3'>
-                <Image
-                    src={LogoWhite}
-                    alt='logo'
-                />
-                <div className='mt-5 text-center'>
-                    <p className='font-bold'>Phone Number:</p>
-                    <p>(123) 456-7890</p>
-                    <p className="font-bold mt-3">Email Address:</p>
-                    <p>brandon@lolocreekexcavating.com</p>
-                    <p className="font-bold mt-3">Address:</p>
-                    <p>1234 Somewhere in Montana Lane</p>
+            <div className='text-black grid md:grid-cols-2 p-3'>
+                <div className='md:w-80 place-self-center'>
+                    <Image
+                        src={LogoWhite}
+                        alt='logo'
+                    />
                 </div>
-                <Button
-                    text="Contact Us"
-                    attributes={{
-                        display: 'block',
-                        text: 'text-center text-white',
-                        margin: 'mt-5'
-                    }}
-                    action={{
-                        url:'/contact_us'
-                    }}
-                />
+                <div>
+                    <div className='mt-5 text-center'>
+                        <p className='font-bold'>Phone Number:</p>
+                        <p>(123) 456-7890</p>
+                        <p className="font-bold mt-3">Email Address:</p>
+                        <p>brandon@lolocreekexcavating.com</p>
+                        <p className="font-bold mt-3">Address:</p>
+                        <p>1234 Somewhere in Montana Lane</p>
+                    </div>
+                    <Button
+                        text="Contact Us"
+                        attributes={{
+                            display: 'block',
+                            text: 'text-center text-white',
+                            margin: 'mt-5'
+                        }}
+                        action={{
+                            url:'/contact_us'
+                        }}
+                    />
+                </div>
             </div>
         )
     }

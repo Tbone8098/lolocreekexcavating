@@ -33,8 +33,8 @@ const Index = (props) => {
                         <Image
                         src={Close}
                         alt='close icon'
-                        width={50}
-                        height={50}
+                        width={35}
+                        height={35}
                         />
                     </div>
                     {modal}
