@@ -68,8 +68,10 @@ export default function Index() {
 
     const sendEmail = (e) => {
       e.preventDefault();
+      console.log(form.current);
   
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_USER_ID')
+    //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_USER_ID')
+    emailjs.sendForm('service_z7obine', 'template_b7ge82t', form.current, 'user_eOeta8I5Ss7MwEOB81mgt')
         .then((result) => {
             console.log(result.text);
         }, (error) => {
@@ -86,7 +88,7 @@ export default function Index() {
                 </div>
                 <div className='col-span-10 col-start-2 md:mt-32'>
                     <h2 className="text-2xl text-center md:text-5xl">Send Us a Message</h2>
-                    <form className='flex flex-col items-center md:mt-8' action="" method="post">
+                    <form className='flex flex-col items-center md:mt-8' method="post" ref={form} onSubmit={sendEmail}>
                         <div className='w-full grid md:grid-cols-2 gap-3 items-center md:flex-row md:justify-between'>
 
                             <div className='flex flex-col mb-3'>
@@ -105,7 +107,7 @@ export default function Index() {
                             <textarea name="message" id="message" cols="30" rows="10" className='border w-full' onChange={(e) => typeHandler(e)} value={message} placeholder='Message'></textarea>
                             <span className='text-center'>{messageError}</span>
                         </div>
-                        <button className='border bg-orange-500 p-3 w-full lg:w-1/2'>Send</button>
+                        <input type='submit' value='Submit' className='border bg-orange-500 p-3 w-full lg:w-1/2'/>
                     </form>
                 </div>
             </div>

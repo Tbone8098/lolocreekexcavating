@@ -5,6 +5,7 @@ import StyleCSS from './style.module.css'
 
 // components
 import { Header, Logo, Button, Footer } from 'components';
+import {data} from 'datafiles/companyData';
 
 // image
 import LoloLogo from 'images/logoWhite.png';
@@ -13,11 +14,13 @@ export default function Index() {
 
     const infoBlock = () => {
         return (
-            <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
-                <h1 className='hidden md:inline-block text-5xl font-libre font-bold'>Lolo Creek Excavating</h1>
-                <p className={cx('text-2xl font-cinzel md:text-4xl')}>(406) 546-9948</p>
-                <p className='text-sm font-bree md:text-lg'>brandon@lolocreekexcavating.com</p>
-                <p className='text-sm font-bree md:text-lg'>6940 Mormon Creek Rd. Lolo MT 59847</p>
+            <div>
+                <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
+                <h1 className='hidden md:inline-block text-5xl font-libre font-bold'>{data.title}</h1>
+                    <p className={cx('text-2xl font-cinzel md:text-4xl')}>{data.phoneNum.cell}</p>
+                    <p className='text-sm font-bree md:text-lg'>{data.email}</p>
+                    <p className='text-sm font-bree md:text-lg'>{data.address}</p>
+                </div>
             </div>
         )
     }

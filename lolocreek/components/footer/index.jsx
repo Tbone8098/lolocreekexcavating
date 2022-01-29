@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 // components
 import { Modal, Button } from 'components';
+import { data } from 'datafiles/companyData';
 
 // images
 import { LogoBlack, LogoWhite } from 'images';
@@ -21,11 +22,11 @@ const Index = () => {
                 <div>
                     <div className='mt-5 text-center'>
                         <p className='font-bold'>Phone Number:</p>
-                        <p>(123) 456-7890</p>
+                        <p>{data.phoneNum.cell}</p>
                         <p className="font-bold mt-3">Email Address:</p>
-                        <p>brandon@lolocreekexcavating.com</p>
+                        <p>{data.email}</p>
                         <p className="font-bold mt-3">Address:</p>
-                        <p>1234 Somewhere in Montana Lane</p>
+                        <p>{data.address}</p>
                     </div>
                     <Button
                         text="Contact Us"
