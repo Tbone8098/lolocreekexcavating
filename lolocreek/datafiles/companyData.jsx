@@ -1,7 +1,7 @@
 
 
 export const data = {
-    title: 'Lolo Creek Excavating',
+    title: 'Lolo Creek Excavating, LLC',
     phoneNum: {
         cell: '(406) 546-9948'
     },

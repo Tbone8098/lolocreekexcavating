@@ -14,11 +14,13 @@ export default function Index() {
 
     const infoBlock = () => {
         return (
-            <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
+            <div>
+                <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
                 <h1 className='hidden md:inline-block text-5xl font-libre font-bold'>{data.title}</h1>
-                <p className={cx('text-2xl font-cinzel md:text-4xl')}>{data.phoneNum.cell}</p>
-                <p className='text-sm font-bree md:text-lg'>{data.email}</p>
-                <p className='text-sm font-bree md:text-lg'>{data.address}</p>
+                    <p className={cx('text-2xl font-cinzel md:text-4xl')}>{data.phoneNum.cell}</p>
+                    <p className='text-sm font-bree md:text-lg'>{data.email}</p>
+                    <p className='text-sm font-bree md:text-lg'>{data.address}</p>
+                </div>
             </div>
         )
     }
