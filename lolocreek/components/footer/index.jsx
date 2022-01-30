@@ -11,6 +11,7 @@ import { LogoBlack, LogoWhite } from 'images';
 const Index = () => {
 
     const modalContent = () => {
+        console.log(data);
         return (
             <div className='text-black grid md:grid-cols-2 p-3'>
                 <div className='md:w-80 place-self-center'>
@@ -61,9 +62,9 @@ const Index = () => {
                 </ul>
             </div>
             <div className='hidden md:flex flex-col place-self-center text-center'>
-                <p>(406) 546-9948</p>
-                <p>brandon@lolocreekexcavating.com</p>
-                <p>Address is 6940 Mormon Creek Rd. Lolo MT 59847</p>
+                <p>{data.phoneNum.cell}</p>
+                <p>{data.email}</p>
+                <p>{data.address}</p>
             </div>
             <div className='p-2 flex justify-end'>
                 <Modal
