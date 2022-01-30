@@ -1,6 +1,10 @@
 import { Header, Footer } from 'components';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import cx from "classnames";
+
+// styles
+import StyleCSS from './style.module.css';
 
 export default function Index() {
     const [fullname, setFullname] = useState('')
@@ -15,7 +19,7 @@ export default function Index() {
     const [emailError, setEmailError] = useState('')
     const [messageError, setMessageError] = useState('')
 
-    const [messageSent, setMessageSent] = useState(false)
+    const [messageStatus, setMessageStatus] = useState('available')
 
     let EMAILRE = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
 
@@ -89,8 +93,10 @@ export default function Index() {
             //   emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_USER_ID')
             emailjs.sendForm('service_z7obine', 'template_b7ge82t', form.current, 'user_eOeta8I5Ss7MwEOB81mgt')
                 .then((result) => {
-                    console.log(result.text);
-                    setMessageSent(true)
+                    setMessageStatus('sending')
+                    if (result.status === 200){
+                        setMessageStatus('sent')
+                    }
                 }, (error) => {
                     console.log(error.text);
                 });
@@ -98,6 +104,47 @@ export default function Index() {
             console.log("Can't send Message yet");
         }
     };
+
+    const messageArea = () => {
+        if (messageStatus === 'available') {
+            return (
+                <form className={cx('flex flex-col items-center md:mt-8', StyleCSS.form)} method="post" ref={form} onSubmit={sendEmail}>
+                    <div className='w-full grid md:grid-cols-2 gap-3 items-center md:flex-row md:justify-between'>
+
+                        <div className='flex flex-col mb-3'>
+                            <span className='text-center'>{fullnameError}</span>
+                            <input className='border w-full text-center md:w-full p-5 md:mr-3' type="text" name="fullname" id="fullname" placeholder='Full Name' value={fullname} onChange={(e) => typeHandler(e)} />
+
+                        </div>
+                        <div className='flex flex-col mb-3'>
+                            <span className='text-center'>{emailError}</span>
+                            <input className='border w-full text-center md:w-full p-5 ' type="text" name="email" id="email" placeholder='Email' value={email} onChange={(e) => typeHandler(e)} />
+                        </div>
+
+                    </div>
+                    <div className='w-100 mb-3 w-full md:flex md:flex-col'>
+
+                        <textarea name="message" id="message" cols="30" rows="10" className='border w-full' onChange={(e) => typeHandler(e)} value={message} placeholder='Message'></textarea>
+                        <span className='text-center'>{messageError}</span>
+                    </div>
+                    <input type='submit' value='Submit' className='border bg-orange-500 p-3 w-full lg:w-1/2' />
+                </form>
+            )
+        } else if (messageStatus === 'sending'){
+            return (
+                <div className={cx(StyleCSS.message__box)}>
+                    <span className='text-2xl'>Sending Message ...</span>
+                </div>
+            )
+        }
+        else if (messageStatus === 'sent'){
+            return (
+                <div className={cx(StyleCSS.message__box)}>
+                    <span className='text-2xl'>Message Sent</span>
+                </div>
+            )
+        }
+    }
 
 
     return (
@@ -108,35 +155,7 @@ export default function Index() {
                 </div>
                 <div className='col-span-10 col-start-2 md:mt-32'>
                     <h2 className="text-2xl text-center md:text-5xl">Send Us a Message</h2>
-                    {
-                        messageSent ?
-                            <div>
-                                Message Sent
-                            </div>
-                            :
-
-                            <form className='flex flex-col items-center md:mt-8' method="post" ref={form} onSubmit={sendEmail}>
-                                <div className='w-full grid md:grid-cols-2 gap-3 items-center md:flex-row md:justify-between'>
-
-                                    <div className='flex flex-col mb-3'>
-                                        <input className='border w-full text-center md:w-full p-5 md:mr-3' type="text" name="fullname" id="fullname" placeholder='Full Name' value={fullname} onChange={(e) => typeHandler(e)} />
-                                        <span className='text-center'>{fullnameError}</span>
-
-                                    </div>
-                                    <div className='flex flex-col mb-3'>
-                                        <input className='border w-full text-center md:w-full p-5 ' type="text" name="email" id="email" placeholder='Email' value={email} onChange={(e) => typeHandler(e)} />
-                                        <span className='text-center'>{emailError}</span>
-                                    </div>
-
-                                </div>
-                                <div className='w-100 mb-3 w-full md:flex md:flex-col'>
-
-                                    <textarea name="message" id="message" cols="30" rows="10" className='border w-full' onChange={(e) => typeHandler(e)} value={message} placeholder='Message'></textarea>
-                                    <span className='text-center'>{messageError}</span>
-                                </div>
-                                <input type='submit' value='Submit' className='border bg-orange-500 p-3 w-full lg:w-1/2' />
-                            </form>
-                    }
+                    {messageArea()}
                 </div>
             </div>
             <div className='mt-auto'>

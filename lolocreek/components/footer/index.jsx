@@ -11,7 +11,6 @@ import { LogoBlack, LogoWhite } from 'images';
 const Index = () => {
 
     const modalContent = () => {
-        console.log(data);
         return (
             <div className='text-black grid md:grid-cols-2 p-3'>
                 <div className='md:w-80 place-self-center'>

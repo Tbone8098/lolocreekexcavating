@@ -18,7 +18,6 @@ export default function Index(props) {
     const {page} = props
 
     const style = (loc) => {
-        console.log(loc, page);
         if (page == loc){
             return 'underline'
         }
