@@ -5,7 +5,7 @@ import StyleCSS from './style.module.css'
 
 // components
 import { Header, Logo, Button, Footer } from 'components';
-import {data} from 'datafiles/companyData';
+import { data } from 'datafiles/companyData';
 
 // image
 import LoloLogo from 'images/logoWhite.png';
@@ -16,9 +16,9 @@ export default function Index() {
         return (
             <div>
                 <div className={cx(StyleCSS.infoBox, 'flex flex-col gap-3')}>
-                <h1 className='hidden md:inline-block text-5xl font-libre font-bold'>{data.title}</h1>
-                    <p className={cx('text-2xl font-cinzel md:text-4xl')}>{data.phoneNum.cell}</p>
-                    <p className='text-sm font-bree md:text-lg'>{data.email}</p>
+                    <h1 className='hidden md:inline-block text-5xl font-libre font-bold'>{data.title}</h1>
+                    <a href={'tel:' + data.phoneNum.cellSimplified}><p className={cx('text-2xl font-cinzel md:text-4xl border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500')}> {data.phoneNum.cell}</p></a>
+                    <a href={'mailto:' + data.email}><p className='text-md font-bree md:text-lg border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500'>{data.email}</p></a>
                     <p className='text-sm font-bree md:text-lg'>{data.address}</p>
                 </div>
             </div>
