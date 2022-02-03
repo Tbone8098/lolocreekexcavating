@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import cx from "classnames";
 
 // components
 import { Modal, Button } from 'components';
@@ -22,9 +23,9 @@ const Index = () => {
                 <div>
                     <div className='mt-5 text-center'>
                         <p className='font-bold'>Phone Number:</p>
-                        <p>{data.phoneNum.cell}</p>
+                        <a href={'tel:' + data.phoneNum.cellSimplified}><p className={cx('text-2xl font-cinzel md:text-4xl border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500')}> {data.phoneNum.cell}</p></a>
                         <p className="font-bold mt-3">Email Address:</p>
-                        <p>{data.email}</p>
+                        <a href={'mailto:' + data.email}><p className='text-md font-bree md:text-lg border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500'>{data.email}</p></a>
                         <p className="font-bold mt-3">Address:</p>
                         <p>{data.address}</p>
                     </div>
@@ -36,7 +37,7 @@ const Index = () => {
                             margin: 'mt-5'
                         }}
                         action={{
-                            url:'/contact_us'
+                            url: '/contact_us'
                         }}
                     />
                 </div>
@@ -54,15 +55,15 @@ const Index = () => {
                     <li>
                         <Link href='/services'>Services</Link>
                     </li>
-                    <li><Modal
+                    <li className='cursor-pointer'><Modal
                         btnText="Information"
                         modal={modalContent()}
                     /></li>
                 </ul>
             </div>
             <div className='hidden md:flex flex-col place-self-center text-center'>
-                <p>{data.phoneNum.cell}</p>
-                <p>{data.email}</p>
+                <a href={'tel:' + data.phoneNum.cellSimplified}><p className={cx('text-2xl font-cinzel md:text-4xl border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500')}> {data.phoneNum.cell}</p></a>
+                <a href={'mailto:' + data.email}><p className='text-md font-bree md:text-lg border-2 rounded-lg shadow-lg md:rounded-none md:shadow-none md:border-none md:hover:text-blue-500'>{data.email}</p></a>
                 <p>{data.address}</p>
             </div>
             <div className='p-2 flex justify-end'>
