@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    <!-- my CSS -->
+    {% block base_css %}
+
+    {% endblock base_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'my-green': '#639438',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+              body {
+                  font-size: 18px
+              }
+            }
+          </style>
+
+
+
+
+    <title>Lolo Creek Excavating</title>
+</head>
+
+<body>
+    {% block bg_img %}
+    
+    {% endblock bg_img %}
+
+    <div class="page-wrapper flex flex-col h-screen">
+        <div class="mt-0">
+            {% block base_header %}
+            {% include 'components/header.html' %}
+            {% endblock base_header %}
+        </div>
+
+        <div class="mt-auto h-full">
+            {% block base_content %}
+            
+            {% endblock base_content %}
+        </div>
+
+        <div class="mt-auto">
+            {% block base_footer %}
+            {% include 'components/footer.html' %}
+            {% endblock base_footer %}
+        </div>
+    </div>
+
+    <!-- my JS -->
+    {% block base_js %}
+
+    {% endblock base_js %}
+</body>
+
+</html>
