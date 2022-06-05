@@ -6,6 +6,10 @@ from flask_app.models import model_user
 def login():
     return render_template('/admin/login.html')
 
+@app.route('/login/process')
+def process_login():
+    return redirect('/dashboard')
+
 @app.route('/logout')
 def logout():
     del session['uuid']
