@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block base_header %}
+    <div>
+        <h1 class="text-4xl text-center">Login</h1>
+    </div>
+{% endblock base_header %}
+
+{% block base_content %}
+    <div class="flex justify-center self-center">
+        <form class="flex flex-col gap-3" action="" method="post">
+            <input type="text" name="email" id="email" placeholder="Email">
+            <input type="password" name="pw" id="pw" placeholder="Password">
+            <button class="btn bg-my-green">Login</button>
+        </form>
+    </div>
+{% endblock base_content %}

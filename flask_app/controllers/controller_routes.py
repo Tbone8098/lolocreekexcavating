@@ -4,11 +4,11 @@ from flask import render_template, redirect, request, session, flash, jsonify
 
 @app.route('/')
 def index():
-    if 'uuid' in session:
-        return redirect('/dashboard')
-    session['page'] = 'landing_page'
     return render_template('onlooker/index.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('admin/dashboard.html')
 
 @app.route('/aboutus')
 def aboutus():
