@@ -12,6 +12,7 @@
 
     {% endblock base_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
 
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +21,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'my-green': '#639438',
+                        'my-accent': '#ffb703',
+                        'my-danger': 'rgb(231, 109, 109)',
+                        'my-secondary': '#8ecae6',
+                        'my-dark': '#023047',
                     }
                 }
             }
@@ -33,9 +37,6 @@
               }
             }
           </style>
-
-
-
 
     <title>Lolo Creek Excavating</title>
 </head>
@@ -65,10 +66,15 @@
         </div>
     </div>
 
+    {% block modal %}
+        
+    {% endblock modal %}
+
     <!-- my JS -->
     {% block base_js %}
 
     {% endblock base_js %}
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 </body>
 
 </html>

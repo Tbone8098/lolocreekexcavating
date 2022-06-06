@@ -13,11 +13,12 @@
 
     <div class="col-span-10 md:col-span-5 col-start-2 md:col-start-auto bg-white border-2 border-black p-3 rounded-lg text-center">
         <div>
-            <h1 class="text-xl font-bold">Lolo Creek Excavating, LLC</h1>
+            <h1 class="text-xl font-bold">{{ business.company_name }}</h1>
         </div>
-        <p>Phone: <a href="tel:4065469948">(406) 546 - 9948</a></p>
-        <p>Email: <a class="" href="mailto:brandon@lolocreekexcavating.com">Click Here</a></p>
-        <p>Located in Lolo, Montana</p>
+        <p>Phone: <a href="tel:{{ business.phone_number }}">{{ business.phone_number }}</a></p>
+        <p class="inline-block md:hidden">Email: <a href="mailto:{{ business.email }}">Click Here</a></p>
+        <p class="hidden md:inline-block">Email: <a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+        <p>{{ business.address }}</p>
     </div>
 </div>
 {% endblock base_content %}

@@ -1,26 +1,41 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, jsonify
-# from flask_app.models import model_user
+from flask_app.models import model_business_info
 
 @app.route('/')
 def index():
-    return render_template('onlooker/index.html')
+    context = {
+        'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('onlooker/index.html', **context)
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('admin/dashboard.html')
+    context = {
+            'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('admin/dashboard.html', **context)
 
 @app.route('/aboutus')
 def aboutus():
-    return render_template('/onlooker/aboutus.html')
+    context = {
+            'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/onlooker/aboutus.html', **context)
 
 @app.route('/services')
 def services():
-    return render_template('/onlooker/services.html')
+    context = {
+            'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/onlooker/services.html', **context)
 
 @app.route('/contactus')
 def contactus():
-    return render_template('/onlooker/contactus.html')
+    context = {
+            'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/onlooker/contactus.html', **context)
 
 
 @app.route('/', defaults={'path': ''})

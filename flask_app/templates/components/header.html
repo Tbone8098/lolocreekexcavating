@@ -10,7 +10,8 @@
         <li><a class="{{ 'underline' if page == '/' else '' }}" href="/">Home</a></li>
         <li><a class="{{ 'underline' if page == '/aboutus' else '' }}" href="/aboutus">About Us</a></li>
         <li><a class="{{ 'underline' if page == '/services' else '' }}" href="/services">Services</a></li>
-        <li><a class="btn bg-black text-my-green" href="contactus">Contact Us</a></li>
+        <li><a class="{{ 'underline' if page == '/gallery' else '' }}" href="/gallery">Gallery</a></li>
+        <li><a class="btn bg-black text-my-accent" href="contactus">Contact Us</a></li>
     </ul>
 </div>
 
@@ -28,7 +29,7 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="logo mt-3">
-                    <a class="btn bg-black text-my-green" href="contactus">Contact Us</a>
+                    <a class="btn bg-black text-my-accent" href="contactus">Contact Us</a>
                 </div>
                 <div class="menu-items bg-white border-r-2 border-black">
                     <li><a class="{{ 'font-bold' if page == '/' else '' }}" href="/">Home</a></li>

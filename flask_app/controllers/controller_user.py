@@ -6,8 +6,10 @@ from flask_app.models import model_user
 def login():
     return render_template('/admin/login.html')
 
-@app.route('/login/process')
+@app.route('/login/process', methods=['POST'])
 def process_login():
+    if not model_user.User.validation_login(request.form):
+        return redirect('/login')
     return redirect('/dashboard')
 
 @app.route('/logout')

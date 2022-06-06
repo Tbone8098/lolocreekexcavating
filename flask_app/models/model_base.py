@@ -51,6 +51,7 @@ class base_model:
             for table_name in results:
                 all_table_name.append(cls(table_name))
             return all_table_name
+        return []
 
     @classmethod
     def get_one(cls, **data):
