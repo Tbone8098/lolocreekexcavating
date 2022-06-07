@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, jsonify
-from flask_app.models import model_business_info, model_service
+from flask_app.models import model_business_info, model_service, model_album
 
 @app.route('/')
 def index():
@@ -45,9 +45,9 @@ def contactus():
 @app.route('/admin/gallery')
 def admin_gallery():
     context = {
-
+        'all_albums': model_album.Album.get_all()
     }
-    return render_template('/admin/gallery.html')
+    return render_template('/admin/gallery.html', **context)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

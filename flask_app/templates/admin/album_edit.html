@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl"><strong>Album: </strong> {{ album.name }}</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+<div class="col-span-8 grid grid-cols-3 lg:grid-cols-6 lg:col-span-10 h-28">
+    {% for picture in all_pictures %}
+    <div class="m-3 border-2 border-my-dark shadow rounded-lg bg-my-dark ">
+        <img class="rounded-lg object-cover h-24 w-full" src="{{ picture.url }}" alt="{{ picture.name }}">
+        <div class="flex justify-between items-center mx-1">
+            <p class="text-center text-white">{{ picture.name }}</p>
+            <a class="" href="">❌</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="shadow col-span-4 col-start-9 lg:col-span-2 lg:col-start-11 p-3">
+    <form class="flex flex-col gap-3" action="/album/{{album.id}}/add_photo" method="post"
+        enctype="multipart/form-data">
+        <input type="file" name="picture" id="picture">
+        {% for message in get_flashed_messages(category_filter=["err_image"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Name (45 Characters)</label>
+        <input type="text" name="name" id="name">
+        {% for message in get_flashed_messages(category_filter=["err_image_name"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Description (255 Characters)</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <!-- <input type="text" name="description" id="description"> -->
+        <button class="btn bg-my-dark text-white">Add Photo</button>
+    </form>
+</div>
+{% endblock admin_content %}

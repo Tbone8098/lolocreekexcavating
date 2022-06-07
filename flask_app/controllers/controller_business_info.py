@@ -1,4 +1,3 @@
-from cmath import log, pi
 from flask_app import app
 from flask import render_template, redirect, session, request, jsonify
 from flask_app.models import model_business_info
@@ -15,7 +14,6 @@ def business_info_new():
 
 @app.route('/api/business_info/<int:id>/update', methods=['post'])
 def api_business_update(id):
-    print("testing")
     data = {**request.form}
     for item in data:
         if data[item] == 'undefined':
@@ -48,10 +46,8 @@ def business_info_update():
                     'name': file
                 })
         
-        print(pictures)
         if len(pictures):
             for item in pictures:
-                print(item)
                 resp = cloudinaryUpload(item['file'], '/business_info', item['name'])
                 data[file] = resp['url']
         # for file in request.files:

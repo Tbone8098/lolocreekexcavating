@@ -13,9 +13,11 @@
         {% include 'components/admin/sidenav.html' %}
     </div>
     <div class="col-span-10 flex flex-col h-full">
-        {% block admin_header %}
+        <div class="flex justify-between items-center m-3">
+            {% block admin_header %}
             
-        {% endblock admin_header %}
+            {% endblock admin_header %}
+        </div>
 
         <div class="h-full grid grid-cols-12">
             {% block admin_content %}

@@ -6,7 +6,7 @@
 
 {% block admin_content %}
     <div class="col-span-full">
-        <div>
+        <div class="border-b-2 border-slate-200 pb-2">
             <form class="flex justify-center items-center gap-3" action="/album/create" method="post">
                 <div>
                     <input type="text" name="name" id="name" placeholder="Album Name">
@@ -16,6 +16,31 @@
                 </div>
                 <button class="btn bg-my-accent">Create Album</button>
             </form>
+        </div>
+        <div class="w-full mt-3">
+            <table class="w-full text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Updated</th>
+                        <th>Created On</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for album in all_albums %}
+                        <tr>
+                            <td>{{ album.name }}</td>
+                            <td>{{ album.updated_at }}</td>
+                            <td>{{ album.created_at }}</td>
+                            <td>
+                                <a href="/album/{{album.id}}/edit" class="btn bg-my-secondary">Edit</a>
+                                <a href="/album/{{album.id}}/delete" class="btn bg-my-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock admin_content %}
