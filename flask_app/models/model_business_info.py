@@ -14,3 +14,5 @@ class BusinessInfo(model_base.base_model):
         self.about_us = data['about_us']
         self.about_us_img = data['about_us_img']
         self.company_name = data['company_name']
+        self.company_logo = data['company_logo']
+        self.front_page_img = data['front_page_img']

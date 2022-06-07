@@ -1,79 +1,45 @@
 {% extends 'base.html' %}
 
 {% block base_css %}
-    <style>
-        .active {
-            background-color: green;
-        }
-    </style>
+<style>
+    .active {
+        background-color: green;
+    }
+</style>
 {% endblock base_css %}
 
 {% block base_content %}
-<div class="mx-3 md:hidden">
-    <div class="flex gap-3 justify-center">
-        <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2 active" info_section="site-work">
-            <p class="text-sm">Site Work</p>
+<h1 class="text-4xl text-center">Services</h1>
+<div class="mx-3 md:hidden reletive">
+    <div class="flex gap-3 flex-wrap justify-evenly">
+        {% for service in all_services %}
+        <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2"
+            info_section="{{ service.name }}">
+            <p class="text-sm">{{ service.name }} </p>
         </div>
-        <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2" info_section="excavation">
-            <p class="text-sm">Excavation </p>
+        {% endfor %}
+    </div>
+    {% for service in all_services %}
+    <div class="hidden info-section absolute top-0 left-0 bg-white h-full z-10 px-5 w-full" id="{{ service.name }}">
+        <div class="flex justify-between mx-3">
+            <h3 class="text-xl font-bold">{{ service.name }}</h3>
+            <span class="close-btn cursor-pointer">❌</span>
         </div>
-        <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2" info_section="snow-removal">
-            <p class="text-sm">Snow Removal</p>
-        </div>
+        {{ service.description | safe }}
     </div>
-    
-    <div class="info-section" id="site-work">
-        <h3 class="text-xl font-bold">Site Work</h3>
-        <p>Grading</p>
-        <p>Leveling</p>
-        <p>Clearing land for development</p>
-        <p>Roads – repair and/or maintenance</p>
-        <p>Materials – delivery, placement, spreading, and/or haul-off</p>
-    </div>
-    <div class="hidden info-section" id="excavation">
-        <h3 class="text-xl font-bold">Excavation</h3>
-        <p>Footings</p>
-        <p>Septic tanks</p>
-        <p>Drain/leach fields</p>
-        <p>Ditches</p>
-        <p>French drains</p>
-        <p>Backfilling</p>
-        <p>Driveways – constructing and/or resurfacing</p>
-        <p>Building sites – creating and/or leveling</p>
-    </div>
-    <div class="hidden info-section" id="snow-removal">
-        <h3 class="text-xl font-bold">Snow Removal</h3>
-        <p>We have equipment to plow and clear both large or small projects. With our rubber track skid steer, we can clear a lot, road or driveway with ease while being gentle on whatever the surface is. If you have large piles that need to be moved on site or hauled off, we got you.</p>
-    </div>
+    {% endfor %}
 </div>
 
-<div class="hidden md:flex flex-wrap gap-3 m-5 justify-evenly">
-    <div class="border-black border shadow-lg p-3 rounded-lg w-96">
-        <h3 class="text-xl font-bold">Site Work</h3>
-        <p>Grading</p>
-        <p>Leveling</p>
-        <p>Clearing land for development</p>
-        <p>Roads – repair and/or maintenance</p>
-        <p>Materials – delivery, placement, spreading, and/or haul-off</p>
+<div class="hidden md:grid grid-cols-12 gap-3">
+    {% for service in all_services %}
+    <div class="border-black border shadow-lg p-3 rounded-lg w-full col-span-10 col-start-2">
+        <h3 class="text-xl font-bold">{{ service.name }}</h3>
+        {{ service.description | safe }}
     </div>
-    <div class="border-black border shadow-lg p-3 rounded-lg w-96">
-        <h3 class="text-xl font-bold">Excavation</h3>
-        <p>Footings</p>
-        <p>Septic tanks</p>
-        <p>Drain/leach fields</p>
-        <p>Ditches</p>
-        <p>French drains</p>
-        <p>Backfilling</p>
-        <p>Driveways – constructing and/or resurfacing</p>
-        <p>Building sites – creating and/or leveling</p>
-    </div>
-    <div class="border-black border shadow-lg p-3 rounded-lg w-96">
-        <h3 class="text-xl font-bold">Snow Removal</h3>
-        <p>We have equipment to plow and clear both large or small projects. With our rubber track skid steer, we can clear a lot, road or driveway with ease while being gentle on whatever the surface is. If you have large piles that need to be moved on site or hauled off, we got you.</p>
-    </div>
+    {% endfor %}
 </div>
 {% endblock base_content %}
 
 {% block base_js %}
-    <script src="{{ url_for('static', filename='js/services.js') }}"></script>
+<script src="{{ url_for('static', filename='js/services.js') }}"></script>
 {% endblock base_js %}

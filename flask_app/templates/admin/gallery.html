@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+    <h1 class="text-4xl">Gallery</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+    <div class="col-span-full">
+        <div>
+            <form class="flex justify-center items-center gap-3" action="/album/create" method="post">
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Album Name">
+                    {% for message in get_flashed_messages(category_filter=["err_album_name"]) %}
+                    <p class="alert alert-danger mt-3">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <button class="btn bg-my-accent">Create Album</button>
+            </form>
+        </div>
+    </div>
+{% endblock admin_content %}

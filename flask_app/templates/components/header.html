@@ -1,11 +1,7 @@
 {% set page = url_for(request.endpoint) %}
 
-{% block base_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
-{% endblock base_css %}
-
 <div class="hidden md:flex justify-between mx-5 p-5 mt-9 bg-white items-center rounded-lg">
-    <img src="{{ url_for('static', filename='img/logoBlack.png') }}" alt="logo" width="100px">
+    <img src="{{ business.company_logo }}" alt="logo" width="100px">
     <ul class="flex gap-3">
         <li><a class="{{ 'underline' if page == '/' else '' }}" href="/">Home</a></li>
         <li><a class="{{ 'underline' if page == '/aboutus' else '' }}" href="/aboutus">About Us</a></li>
@@ -14,9 +10,6 @@
         <li><a class="btn bg-black text-my-accent" href="contactus">Contact Us</a></li>
     </ul>
 </div>
-
-
-
 
 <div class="block md:hidden">
     <nav>

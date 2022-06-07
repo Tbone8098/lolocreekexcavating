@@ -1,10 +1,13 @@
 from flask_app import app, bcrypt
 from flask import render_template, redirect, request, session, flash, jsonify
-from flask_app.models import model_user
+from flask_app.models import model_user, model_business_info
 
 @app.route('/login')
 def login():
-    return render_template('/admin/login.html')
+    context = {
+        'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/admin/login.html', **context)
 
 @app.route('/login/process', methods=['POST'])
 def process_login():
@@ -19,7 +22,10 @@ def logout():
 
 @app.route('/register')
 def register():
-    return render_template('/admin/register.html')
+    context = {
+        'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/admin/register.html', **context)
 
 @app.route('/user/create', methods=['post'])
 def create_user():

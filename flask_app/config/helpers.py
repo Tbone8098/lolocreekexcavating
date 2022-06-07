@@ -10,9 +10,8 @@ def cloudinaryUpload(img, folder, public_id):
         api_secret = os.environ.get('CLOUD_API_SECRET') 
         )
 
-    image = img
     resp = cloudinary.uploader.upload(
-        image, 
+        file = img, 
         folder = folder, 
         public_id = public_id,
         overwrite = True, 

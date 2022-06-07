@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block bg_img %}
-<img class="bg__img" src="{{ url_for('static', filename='img/homePageBg.jpg') }}" alt="">
+<img class="bg__img" src="{{ business.front_page_img }}" alt="">
 {% endblock bg_img %}
 
 {% block base_content %}
 <div class="grid grid-cols-12 gap-3 mt-5">
-    
     <div class="col-span-10 md:col-span-5 col-start-2 md:col-start-2 flex justify-center bg-white/50 border-2 border-black p-3 rounded-lg">
-        <img src="{{ url_for('static', filename='img/logoBlack.png') }}" alt="logo" width="200px">
+        <img src="{{ business.company_logo }}" alt="logo" width="200px">
     </div>
 
     <div class="col-span-10 md:col-span-5 col-start-2 md:col-start-auto bg-white border-2 border-black p-3 rounded-lg text-center">

@@ -1,9 +1,13 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, jsonify
-from flask_app.models import model_business_info
+from flask_app.models import model_business_info, model_service
 
 @app.route('/')
 def index():
+    business_info = model_business_info.BusinessInfo.get_all()
+    if not business_info:
+        model_business_info.BusinessInfo.create()
+        return redirect('/')
     context = {
         'business': model_business_info.BusinessInfo.get_all()[0]
     }
@@ -26,7 +30,8 @@ def aboutus():
 @app.route('/services')
 def services():
     context = {
-            'business': model_business_info.BusinessInfo.get_all()[0]
+            'business': model_business_info.BusinessInfo.get_all()[0],
+            'all_services': model_service.Service.get_all()
     }
     return render_template('/onlooker/services.html', **context)
 
@@ -37,6 +42,12 @@ def contactus():
     }
     return render_template('/onlooker/contactus.html', **context)
 
+@app.route('/admin/gallery')
+def admin_gallery():
+    context = {
+
+    }
+    return render_template('/admin/gallery.html')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

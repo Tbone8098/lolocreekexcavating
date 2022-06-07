@@ -38,3 +38,35 @@ input {
     background-color: rgb(231, 109, 109);
     color: white;
 }
+
+/* Tables */
+td {
+    padding: 0.5em 0;
+}
+
+
+/* animations */
+.slide-in-left {
+    animation: slide-in-left 0.3s linear forwards;
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+.slide-out-left {
+    animation: slide-out-left 0.3s linear forwards;
+}
+
+@keyframes slide-out-left {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

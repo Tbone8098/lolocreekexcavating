@@ -14,8 +14,11 @@ def admin_services():
 def service_create():
     if not model_service.Service.validate(request.form):
         return redirect('/admin/services')
+    data = {**request.form}
+    if 'files' in data:
+        del data['files']
     
-    model_service.Service.create(**request.form)
+    model_service.Service.create(**data)
     return redirect('/admin/services')
 
 @app.route('/service/<int:id>')          
