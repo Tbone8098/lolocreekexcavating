@@ -1,46 +1,64 @@
 {% extends 'admin/base.html' %}
 
 {% block admin_header %}
-    <h1 class="text-4xl">Gallery</h1>
+<h1 class="text-4xl">Gallery</h1>
 {% endblock admin_header %}
 
 {% block admin_content %}
-    <div class="col-span-full">
-        <div class="border-b-2 border-slate-200 pb-2">
-            <form class="flex justify-center items-center gap-3" action="/album/create" method="post">
-                <div>
-                    <input type="text" name="name" id="name" placeholder="Album Name">
-                    {% for message in get_flashed_messages(category_filter=["err_album_name"]) %}
-                    <p class="alert alert-danger mt-3">{{ message }}</p>
-                    {% endfor %}
-                </div>
-                <button class="btn bg-my-accent">Create Album</button>
-            </form>
-        </div>
-        <div class="w-full mt-3">
-            <table class="w-full text-center">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Last Updated</th>
-                        <th>Created On</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for album in all_albums %}
-                        <tr>
-                            <td>{{ album.name }}</td>
-                            <td>{{ album.updated_at }}</td>
-                            <td>{{ album.created_at }}</td>
-                            <td>
-                                <a href="/album/{{album.id}}/edit" class="btn bg-my-secondary">Edit</a>
-                                <a href="/album/{{album.id}}/delete" class="btn bg-my-danger">Delete</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="col-span-full">
+    <div class="border-b-2 border-slate-200 pb-2">
+        <form class="flex justify-center items-center gap-3" action="/admin/album/create" method="post">
+            <div>
+                <input type="text" name="name" id="name" placeholder="Album Name">
+                {% for message in get_flashed_messages(category_filter=["err_album_name"]) %}
+                <p class="alert alert-danger mt-3">{{ message }}</p>
+                {% endfor %}
+            </div>
+            <button class="btn bg-my-accent">Create Album</button>
+        </form>
     </div>
+    <div class="w-full mt-3">
+        <table class="w-full text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cover photo</th>
+                    <th class="hidden lg:inline">Last Updated</th>
+                    <th class="hidden lg:inline">Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for album in all_albums %}
+                <tr>
+                    <td>{{ album.name }}</td>
+                    <td>
+                        {% if album.cover_image_url %}
+                        <div class="flex justify-center ">
+                            <img src="{{ album.cover_image_url }}" alt="cover image" width="100px">
+                            <span class="cover-photo-delete cursor-pointer" album_id="{{ album.id }}">❌</span>
+                        </div>
+                        {% else %}
+                        <div class="flex gap-3 justify-center">
+                            <input class="cover-update" type="file" name="cover_image_url" id="cover_image"
+                                url="/api/album/{{album.id}}/update">
+                        </div>
+                        {% endif %}
+                    </td>
+                    <td class="hidden lg:inline">{{ album.updated_at.strftime('%Y-%m-%d') }}</td>
+                    <td class="hidden lg:inline">{{ album.created_at.strftime('%Y-%m-%d') }}</td>
+                    <td class="">
+                        <a href="/admin/album/{{album.id}}/edit" class="btn bg-my-secondary">Edit</a>
+                        <a href="/admin/album/{{album.id}}/delete" class="btn bg-my-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock admin_content %}
+
+{% block base_js %}
+    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock base_js %}

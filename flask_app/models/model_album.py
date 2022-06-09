@@ -9,6 +9,8 @@ class Album(model_base.base_model):
     def __init__(self, data):
         super().__init__(data)
         self.name = data['name']
+        self.user_id = data['user_id']
+        self.cover_image_url = data['cover_image_url']
 
     @staticmethod
     def validate(data):

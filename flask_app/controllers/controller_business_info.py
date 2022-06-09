@@ -36,29 +36,20 @@ def api_business_update(id):
 def business_info_update():
     data = {**request.form}
     if request.files:
-        pictures = []
+        photos = []
         for file in request.files:
             file_actual = request.files[file]
             file_actual.save('file')
             if file_actual.content_type != 'application/octet-stream':
-                pictures.append({
+                photos.append({
                     'file': file_actual,
                     'name': file
                 })
         
-        if len(pictures):
-            for item in pictures:
+        if len(photos):
+            for item in photos:
                 resp = cloudinaryUpload(item['file'], '/business_info', item['name'])
                 data[file] = resp['url']
-        # for file in request.files:
-            # file_actual = request.files[file]
-            # file_actual.save('file')
-            # print(file_actual.content_type)
-            # if file_actual.content_type != 'application/octet-stream':
-            #     print("&&&&&&&&&&&&&")
-            #     print(file_actual)
-            #     resp = cloudinaryUpload(request.files[file], '/business_info', file)
-            #     data[file] = resp['url']
 
     model_business_info.BusinessInfo.update_one(**data)
     return redirect('/admin/business_info')

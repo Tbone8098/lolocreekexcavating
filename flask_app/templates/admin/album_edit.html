@@ -6,20 +6,20 @@
 
 {% block admin_content %}
 <div class="col-span-8 grid grid-cols-3 lg:grid-cols-6 lg:col-span-10 h-28">
-    {% for picture in all_pictures %}
+    {% for photo in all_photos %}
     <div class="m-3 border-2 border-my-dark shadow rounded-lg bg-my-dark ">
-        <img class="rounded-lg object-cover h-24 w-full" src="{{ picture.url }}" alt="{{ picture.name }}">
+        <img class="rounded-lg object-contain h-24 w-full" src="{{ photo.url }}" alt="{{ photo.name }}">
         <div class="flex justify-between items-center mx-1">
-            <p class="text-center text-white">{{ picture.name }}</p>
+            <p class="text-center text-white">{{ photo.name }}</p>
             <a class="" href="">❌</a>
         </div>
     </div>
     {% endfor %}
 </div>
 <div class="shadow col-span-4 col-start-9 lg:col-span-2 lg:col-start-11 p-3">
-    <form class="flex flex-col gap-3" action="/album/{{album.id}}/add_photo" method="post"
+    <form class="flex flex-col gap-3" action="/admin/album/{{album.id}}/add_photo" method="post"
         enctype="multipart/form-data">
-        <input type="file" name="picture" id="picture">
+        <input type="file" name="photo" id="photo">
         {% for message in get_flashed_messages(category_filter=["err_image"]) %}
         <p class="alert alert-danger">{{ message }}</p>
         {% endfor %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+<div class="mx-5">
+    <h1 class="text-4xl text-center my-3">All photos</h1>
+    <div class="flex flex-wrap justify-center gap-3">
+        {% if all_photos %}
+        {% for photo in all_photos %}
+        <div
+            class="flex flex-col bg-black text-white text-center border-2 border-black shadow h-42 md:h-60 w-60 rounded-xl photo-hover" style="height: 100%;">
+            <img class="object-cover md:h-52 h-32 w-full rounded-xl" src="{{ photo.url }}" alt="album cover image">
+            <div>
+                <p>{{ photo.name }}</p>
+                <p class="hidden text-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam cupiditate ipsam consequatur at, nobis aliquam soluta sapiente quisquam. Qui deserunt dignissimos neque minima. Ea nulla veniam nisi ducimus odit labore.</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="col-span-full text-center">Sorry, there are no photos in this album yet</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock base_content %}
+
+{% block base_js %}
+    <script src="{{ url_for('static', filename='js/photo.js') }}"></script>
+{% endblock base_js %}

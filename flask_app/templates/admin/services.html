@@ -18,8 +18,8 @@
             <tr>
                 <td>{{ service.name }}</td>
                 <td>
-                    <a class="btn bg-my-secondary" href="/service/{{service.id}}/edit">Edit</a>
-                    <a class="btn bg-my-danger" href="/service/{{service.id}}/delete">Delete</a>
+                    <a class="btn bg-my-secondary" href="/admin/service/{{service.id}}/edit">Edit</a>
+                    <a class="btn bg-my-danger" href="/admin/service/{{service.id}}/delete">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -28,7 +28,7 @@
 </div>
 <div class="col-span-5 px-3">
     <h3 class="text-2xl text-center">New Service</h3>
-    <form class="flex flex-col gap-3 mx-3" action="/service/create" method="post">
+    <form class="flex flex-col gap-3 mx-3" action="/admin/service/create" method="post">
         <input type="text" name="name" id="name" placeholder="Service Name">
         {% for message in get_flashed_messages(category_filter=["err_service_name"]) %}
         <p class="alert alert-danger">{{ message }}</p>
@@ -54,7 +54,7 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+                ['insert', ['link']],
             ]
         });
     });

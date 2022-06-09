@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, jsonify
 from flask_app.models import model_business_info, model_service, model_album
+from flask_app.config.helpers import send_mail
 
 @app.route('/')
 def index():
@@ -21,7 +22,7 @@ def dashboard():
     return render_template('admin/dashboard.html', **context)
 
 @app.route('/aboutus')
-def aboutus():
+def about_us():
     context = {
             'business': model_business_info.BusinessInfo.get_all()[0]
     }
@@ -34,6 +35,14 @@ def services():
             'all_services': model_service.Service.get_all()
     }
     return render_template('/onlooker/services.html', **context)
+
+@app.route('/gallery')
+def gallery():
+    context = {
+            'business': model_business_info.BusinessInfo.get_all()[0],
+            'all_albums': model_album.Album.get_all()
+    }
+    return render_template('/onlooker/gallery.html', **context)
 
 @app.route('/contactus')
 def contactus():
@@ -48,6 +57,11 @@ def admin_gallery():
         'all_albums': model_album.Album.get_all()
     }
     return render_template('/admin/gallery.html', **context)
+
+@app.route('/send_email')
+def send_email():
+    send_mail()
+    return redirect('/')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

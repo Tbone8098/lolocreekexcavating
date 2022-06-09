@@ -3,6 +3,10 @@ import os
 import cloudinary.uploader
 import cloudinary.api
 
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 def cloudinaryUpload(img, folder, public_id):
     cloudinary.config( 
         cloud_name = os.environ.get('CLOUD_NAME'), 
@@ -18,3 +22,26 @@ def cloudinaryUpload(img, folder, public_id):
         )
     return resp
     
+
+def send_mail(data):
+    sender = os.environ.get('EMAIL_ADDRESS')
+    reciver = os.environ.get('EMAIL_ADDRESS')
+    password = os.environ.get('EMAIL_PASSWORD')
+
+    message = f"""
+    Message from your friendly neigborhood website, \n
+    New Message From: {data['name']} | Email: {data['email']} \n
+    {data['message']} \n
+    \n
+    Sincerely, WebworkX
+    """
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+
+    server.login(sender, password)
+    print("logged in")
+
+    server.sendmail(sender, reciver, message)
+    print("email sent")
+
