@@ -6,27 +6,34 @@
 
 
 {% block admin_content %}
-<div class="col-span-5 mx-3">
-    <a href="" class="text-blue-500">See All Messages</a>
-    <div class="border-4 border-black shadow rounded-lg">
+<div class="col-span-8 lg:col-span-5 mx-3">
+    <a class="text-blue-500 cursor-default text-gray-300" >See All Messages (Coming Soon)</a>
+    <div class="border-4 border-black shadow rounded-lg flex flex-col gap-1 h-5/6 p-2 bg-my-secondary overflow-auto">
         {% if all_messages %}
         {% for message in all_messages %}
-        <div class="bg-my-dark text-white p-2 rounded flex justify-between">
-            {% if message.level == 9 %}
-            <h2 class="text-2xl">Bug Report</h2>
-            {% else %}
-            <h2 class="text-2xl">Incoming Message</h2>
-            {% endif %}
-            <div>
-                <span class="cursor-pointer text-2xl api-update" value="1" type="btn" trigger="click"
-                    name="is_completed" url="admin/message/{{ message.id }}/update">✔️</span>
-                <span class="cursor-pointer text-2xl api-update" trigger="click" name="is_completed"
-                    url="admin/message/{{ message.id }}/delete">❌</span>
+        <div class="border-4 border-black rounded-lg shadow bg-white">
+            <div class="bg-my-dark text-white p-2 rounded flex justify-between">
+                {% if message.level == 9 %}
+                <h2 class="text-2xl">Bug Report</h2>
+                {% else %}
+                <div class="flex items-center gap-2">
+                    <h2 class="text-xl lg:text-2xl">Incoming Message</h2>
+                    {% if message.in_process %}
+                        <span class="text-sm text-my-accent">(In Process)</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div>
+                    <span class="cursor-pointer text-2xl api-update" value="1" type="btn" trigger="click"
+                        name="is_completed" url="admin/message/{{ message.id }}/update">✔️</span>
+                    <span class="cursor-pointer text-2xl api-update" trigger="click" name="is_completed"
+                        url="admin/message/{{ message.id }}/delete">❌</span>
+                </div>
             </div>
-        </div>
-        <div>
-            <p class="bg-gray-300 shadow"><strong>From: </strong>{{ message.sender }}</p>
-            <p>{{ message.message }}</p>
+            <div cl>
+                <p class="p-2 bg-gray-300 shadow"><strong>From: </strong><a class="text-blue-500" href="mailto:{{ message.sender }}" onclick="{inProcess({{message.id}})}">{{ message.sender }}</a></p>
+                <p class="p-2">{{ message.message }}</p>
+            </div>
         </div>
         {% endfor %}
         {% else %}
@@ -36,6 +43,6 @@
 </div>
 {% endblock admin_content %}
 
-
-<input class="api-update" type="file" name="company_logo" id="company_logo" placeholder="About Us Image"
-    value="{{ business.company_logo }}" url="/api/business_info/{{ business.id }}/update">
+{% block base_js %}
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock base_js %}

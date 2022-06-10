@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `lolocreekexcavating_db` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `lolocreekexcavating_db`;
+CREATE DATABASE  IF NOT EXISTS `hfrvkh6wwv1igdt6` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `hfrvkh6wwv1igdt6`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: lolocreekexcavating_db
+-- Host: localhost    Database: hfrvkh6wwv1igdt6
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -182,12 +182,15 @@ CREATE TABLE `messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `message` text,
   `sender` varchar(255) DEFAULT NULL,
-  `reciever` varchar(255) DEFAULT NULL,
+  `receiver` varchar(255) DEFAULT NULL,
   `ip` varchar(45) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `level` tinyint DEFAULT NULL,
+  `is_completed` tinyint DEFAULT '0',
+  `in_process` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +246,7 @@ CREATE TABLE `users` (
   `level` tinyint DEFAULT '1',
   `pw` char(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +255,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'Brandom','Williams','brandon@lolocreekexcavating.com','2022-06-09 21:17:37','2022-06-09 21:17:37',5,'$2b$12$qzInUYNg5xqZGxGcMLaTi.rA64JZm6zmYjdBN2pSFFm6hS88UzPcu');
+INSERT INTO `users` VALUES (2,'Brandom','Williams','brandon@lolocreekexcavating.com','2022-06-09 21:17:37','2022-06-09 21:17:37',5,'$2b$12$qzInUYNg5xqZGxGcMLaTi.rA64JZm6zmYjdBN2pSFFm6hS88UzPcu'),(3,'Tyler','Thibault','tyler.thibault@protonmail.com','2022-06-09 23:15:09','2022-06-09 23:15:22',9,'$2b$12$eppCCP0CLIbm.om.oxaDx.cqDbpBO.EFP2XOM89MaxA9H0ET6dUty');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 22:11:08
+-- Dump completed on 2022-06-10 14:11:40

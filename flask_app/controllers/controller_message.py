@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, session, request, flash
+from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app.config.helpers import login_required
 
 from flask_app.models import model_message, model_user
@@ -32,7 +32,7 @@ def contact_the_dev_process():
     db_data = {
         'message': data['message'],
         'sender': submitter.email,
-        'reciever': data['receiver'],
+        'receiver': data['receiver'],
         'ip': request.form['ip_address'],
         'level': 9,
     }
@@ -91,6 +91,15 @@ def send_email():
 def message_update(id):
     model_message.Message.update_one(id=id, **request.form)
     return redirect('/dashboard')
+
+@app.route('/api/admin/message/<int:id>/update', methods=['POST'])    
+@login_required      
+def api_message_update(id):
+    model_message.Message.update_one(id=id, **request.form)
+    res = {
+        'status': 200
+    }
+    return jsonify(res)
 
 @app.route('/admin/message/<int:id>/delete')       
 @login_required   

@@ -13,3 +13,5 @@ class Message(model_base.base_model):
         self.receiver = data['receiver']
         self.ip = data['ip']
         self.level = data['level']
+        self.in_process = data['in_process']
+        self.is_completed = data['is_completed']
