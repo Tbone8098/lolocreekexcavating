@@ -1,0 +1,95 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl">Business Information</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+<div class="col-span-full flex justify-center items-center w-full">
+    <div class="grid grid-cols-2 gap-3 mx-5 w-full">
+        <div class="flex flex-col gap-3 col-span-full">
+            <label for="company_name">Company Name</label>
+            <input class="api-update" type="text" name="company_name" id="company_name" placeholder="Company Name"
+                value="{{ business.company_name }}" url="/api/business_info/{{ business.id }}/update">
+        </div>
+
+        <div class="border-2 border-black rounded p-2 shadow flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-center">Images</h3>
+            <div>
+                <div class="flex flex-col gap-3">
+                    <label for="company_logo">Company Logo</label>
+                    <div class="flex items-center gap-3">
+                        <input class="api-update" type="file" name="company_logo" id="company_logo"
+                            placeholder="About Us Image" value="{{ business.company_logo }}"
+                            url="/api/business_info/{{ business.id }}/update">
+                        <label for="company_logo" class="btn bg-my-secondary">Upload Photo</label>
+                        <img src="{{ business.company_logo }}" alt="about us image" class="border-2 border-black rounded" width="100px">
+                    </div>
+                </div>
+            </div>
+            <!-- Front Page Image -->
+            <div>
+                <div class="flex flex-col gap-3">
+                    <label for="front_page_img">Front Page Image</label>
+                    <div class="flex items-center gap-3">
+                        <input class="api-update" type="file" name="front_page_img" id="front_page_img"
+                            placeholder="About Us Image" value="{{ business.front_page_img }}"
+                            url="/api/business_info/{{ business.id }}/update">
+                        <label for="front_page_img" class="btn bg-my-secondary">Upload Photo</label>
+                        <img src="{{ business.front_page_img }}" alt="about us image" class="border-2 border-black rounded" width="100px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-2 border-black rounded p-2 shadow flex flex-col gap-3">
+            <h3 class="text-xl font-bold text-center">Contact Information</h3>
+            <div class="flex flex-col gap-3">
+                <label for="address">Company Address</label>
+                <input class="api-update" type="text" name="address" id="address" placeholder="Company Address"
+                    value="{{ business.address }}" url="/api/business_info/{{ business.id }}/update">
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <label for="phone_number">Company Phone Number</label>
+                <input class="api-update" type="text" name="phone_number" id="phone_number" placeholder="Company Name"
+                    value="{{ business.phone_number }}" url="/api/business_info/{{ business.id }}/update">
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <label for="email">Company Email</label>
+                <input class="api-update" type="text" name="email" id="email" placeholder="Company Name"
+                    value="{{ business.email }}" url="/api/business_info/{{ business.id }}/update">
+            </div>
+        </div>
+
+        <!-- About Us -->
+        <div class="border-2 border-black rounded p-2 shadow flex flex-col gap-3 col-span-full">
+            <h3 class="text-xl font-bold text-center">About Us</h3>
+            <div class="w-full flex justify-center">
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-3">
+                        <input class="api-update" type="file" name="about_us_img" id="about_us_img"
+                            placeholder="About Us Image" value="{{ business.about_us_img }}"
+                            url="/api/business_info/{{ business.id }}/update">
+                        <label class="btn bg-my-secondary" for="about_us_img">Upload Photo</label>
+                        <img src="{{ business.about_us_img }}" alt="about us image" width="100px">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col" url="/api/business_info/{{ business.id }}/update" name="about_us">
+                <textarea name="about_us" id="summernote" cols="30" rows="10">{{ business.about_us | safe }}</textarea>
+                <button class="summernote-submit btn bg-my-accent mt-2 self-end">Update About Us</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock admin_content %}
+
+
+{% block base_js %}
+<script src="{{ url_for('static', filename='js/rich-text.js') }}"></script>
+{% endblock base_js %}
+
+

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block base_css %}
+<style>
+    .active {
+        background-color: green;
+    }
+</style>
+{% endblock base_css %}
+
+{% block base_content %}
+<h1 class="text-4xl text-center my-3">Services</h1>
+<div class="mx-3 md:hidden reletive">
+    <div class="grid grid-cols-2 gap-3">
+        {% for service in all_services %}
+        <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2"
+            info_section="{{ service.name }}">
+            <p class="text-sm">{{ service.name }} </p>
+        </div>
+        {% endfor %}
+    </div>
+    {% for service in all_services %}
+    <div class="hidden info-section absolute top-0 left-0 bg-white h-full z-10 px-5 w-full" id="{{ service.name }}">
+        <div class="flex justify-between mx-3">
+            <h3 class="text-xl font-bold">{{ service.name }}</h3>
+            <span class="close-btn cursor-pointer">❌</span>
+        </div>
+        {{ service.description | safe }}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="hidden md:flex flex-flow gap-3 mx-5">
+    {% for service in all_services %}
+    <div class="border-black border shadow-lg p-3 rounded-lg w-full">
+        <h3 class="text-xl font-bold">{{ service.name }}</h3>
+        {{ service.description | safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endblock base_content %}
+
+{% block base_js %}
+<script src="{{ url_for('static', filename='js/services.js') }}"></script>
+{% endblock base_js %}
+

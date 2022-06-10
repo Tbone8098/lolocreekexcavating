@@ -1,0 +1,81 @@
+/* utils */
+
+.bg__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* buttons */
+
+.btn {
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+/* inputs */
+input,
+textarea {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 0.25em;
+    text-align: center;
+}
+
+input {
+    height: 2em;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+/* errors */
+.alert {
+    width: 100%;
+    text-align: center;
+    border-radius: 0.25em;
+}
+
+.alert-danger {
+    background-color: rgb(231, 109, 109);
+    color: white;
+}
+
+/* Tables */
+td {
+    padding: 0.5em 0;
+}
+
+
+/* animations */
+.slide-in-left {
+    animation: slide-in-left 0.3s linear forwards;
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.slide-out-left {
+    animation: slide-out-left 0.3s linear forwards;
+}
+
+@keyframes slide-out-left {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

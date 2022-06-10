@@ -1,0 +1,26 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl">Contact the Dev</h1>
+{% endblock admin_header %}
+
+
+{% block admin_content %}
+<div class="col-span-full flex justify-center items-center">
+    <form class="mb-3 flex flex-col gap-1" action="/admin/contact_the_dev/process" method="post">
+        <input type="hidden" class="ip_address" name="ip_address" id="ip_address">
+        <label for="message" class="bg-my-dark text-white p-3 rounded-lg">Message</label>
+        <textarea name="message" id="message" cols="30" rows="10"
+            placeholder="Where All your Problems come true"></textarea>
+        <div class="flex gap-1">
+            <div class="w-full flex-1">
+                <button class="btn bg-my-accent self-end h-full w-full">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock admin_content %}
+
+{% block base_js %}
+    <script src="{{ url_for('static', filename='js/ip.js') }}"></script>
+{% endblock base_js %}

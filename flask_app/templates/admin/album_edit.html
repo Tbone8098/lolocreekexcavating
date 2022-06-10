@@ -1,0 +1,130 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl"><strong>Album: </strong> {{ album.name }}</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+<div class="col-span-10 flex flex-col mx-3">
+    <div class="my-10">
+        <a href="/admin/gallery">⬅️ Back to Gallery</a>
+    </div>
+    <div class="col-span-8 flex items-center">
+        <form class="flex items-end gap-3" action="/admin/album/{{ album.id }}/update" method="post">
+            <div class="flex flex-col">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="{{ album.name }}">
+            </div>
+            <div class="h-16 flex flex-col items-center justify-center gap-1">
+                <label for="cover_image_url" class="text-sm">Cover Photo</label>
+                {% if album.cover_image_url %}
+                <div class="h-full border-2 border-black rounded-lg bg-black group relative">
+                    <img src="{{ album.cover_image_url }}" alt="cover photo" class="rounded-lg h-full w-28 object-cover">
+                    <div class="group-hover:flex hidden text-white absolute top-0 left-0 justify-center items-center bg-black w-full h-full rounded-lg">
+                        <span class="btn bg-my-danger text-sm cursor-pointer cover-photo-delete" album_id="{{ album.id }}">Remove</span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="flex items-center">
+                    <div class="flex flex-col mr-1">
+                        <input class="cover-update" type="file" name="cover_image_url" id="cover_image_url"
+                                url="/api/album/{{album.id}}/update">
+                        <label for="cover_image_url" class="btn bg-my-secondary cursor-pointer">Upload Photo</label>
+                    </div>
+                    <p class="mr-1"><strong>OR</strong></p>
+                    <input type="text" name="cover_image_url_2" placeholder="Photo URL">
+                </div>
+                {% endif %}
+            </div>
+            <div class="flex items-center h-full">
+                <button class="btn bg-my-accent">Update Album</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-span-full grid grid-cols-3 lg:grid-cols-6 gap-3 h-auto mt-10">
+        {% for photo in all_photos %}
+        <div class="border-2 border-black shadow rounded-lg bg-black relative group">
+            <div>
+                <img class="rounded-lg object-cover h-24 w-full" src="{{ photo.url }}" alt="{{ photo.name }}">
+                <div class="flex justify-between items-center mx-1">
+                    <p class="text-center text-white">{{ photo.name }}</p>
+                </div>
+            </div>
+            <div
+                class="absolute top-0 left-0 w-full h-full bg-black/75 rounded-lg hidden justify-center items-center group-hover:flex gap-1">
+                <a href="/admin/image/{{photo.id}}/edit" class="btn bg-my-secondary text-sm">Edit</a>
+                <a href="/admin/image/{{photo.id}}/delete" class="btn bg-my-danger text-sm">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="shadow col-span-4 col-start-9 lg:col-span-2 lg:col-start-11 p-3">
+    <form class="flex flex-col gap-3" action="/admin/album/{{album.id}}/add_photo" method="post"
+        enctype="multipart/form-data">
+        <input type="file" name="photo" id="photo">
+        <label for="photo" class="btn bg-my-accent cursor-pointer">Upload Photo</label>
+        <p><strong>OR</strong></p>
+        <input type="text" name="url" placeholder="Photo URL">
+        {% for message in get_flashed_messages(category_filter=["err_image"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Name (45 Characters)</label>
+        <input type="text" name="name" id="name">
+        {% for message in get_flashed_messages(category_filter=["err_image_name"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Description (255 Characters)</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <!-- <input type="text" name="description" id="description"> -->
+        <button class="btn bg-my-dark text-white">Add Photo</button>
+    </form>
+</div>
+{% endblock admin_content %}
+
+
+{% block base_js %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock base_js %}
+
+
+
+
+<div class="col-span-full grid grid-cols-3 lg:grid-cols-6 lg:col-span-10 h-28">
+    {% for photo in all_photos %}
+    <div class="m-3 border-2 border-black shadow rounded-lg bg-black relative group">
+        <div>
+            <img class="rounded-lg object-cover h-24 w-full" src="{{ photo.url }}" alt="{{ photo.name }}">
+            <div class="flex justify-between items-center mx-1">
+                <p class="text-center text-white">{{ photo.name }}</p>
+            </div>
+        </div>
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-black/75 rounded-lg hidden justify-center items-center group-hover:flex gap-1">
+            <a href="/admin/image/{{photo.id}}/edit" class="btn bg-my-secondary text-sm">Edit</a>
+            <a href="/admin/image/{{photo.id}}/delete" class="btn bg-my-danger text-sm">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="shadow col-span-4 col-start-9 lg:col-span-2 lg:col-start-11 p-3">
+    <form class="flex flex-col gap-3" action="/admin/album/{{album.id}}/add_photo" method="post"
+        enctype="multipart/form-data">
+        <input type="file" name="photo" id="photo">
+        <label for="photo" class="btn bg-my-accent cursor-pointer">Upload Photo</label>
+        {% for message in get_flashed_messages(category_filter=["err_image"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Name (45 Characters)</label>
+        <input type="text" name="name" id="name">
+        {% for message in get_flashed_messages(category_filter=["err_image_name"]) %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        <label for="description">Photo Description (255 Characters)</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <!-- <input type="text" name="description" id="description"> -->
+        <button class="btn bg-my-dark text-white">Add Photo</button>
+    </form>
+</div>
+
+

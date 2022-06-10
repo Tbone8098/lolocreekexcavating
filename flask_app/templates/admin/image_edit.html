@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl"><strong>Image: </strong> {{ image.name }}</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+<div class="col-span-full mx-3">  
+    <div>
+        <a href="/admin/album/{{ join.album_id }}/edit">⬅️ Back to Album</a>
+    </div>
+    <div class="flex justify-center items-center h-full gap-8">
+        <div class="border-4 border-black shadow-lg rounded-lg bg-black">
+            <img  src="{{ image.url }}" alt="{{ image.name }}" class="h-64 rounded object-contain">
+        </div>
+        <form class="flex flex-col" action="/admin/image/{{ image.id }}/update" method="post">
+            <div class="mb-3 flex flex-col text-center">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="{{ image.name }}">
+            </div>
+            <div class="mb-3 flex flex-col text-center">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10">{{ image.description }}</textarea>
+            </div>
+            <button class="btn bg-my-accent self-end">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock admin_content %}

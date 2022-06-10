@@ -1,0 +1,91 @@
+{% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl">Gallery</h1>
+{% endblock admin_header %}
+
+{% block admin_content %}
+<div class="col-span-full mx-5">
+    <div class="border-b-2 border-slate-200 pb-2">
+        <form class="flex justify-center items-center gap-3" action="/admin/album/create" method="post">
+            <div>
+                <input type="text" name="name" id="name" placeholder="Album Name">
+                {% for message in get_flashed_messages(category_filter=["err_album_name"]) %}
+                <p class="alert alert-danger mt-3">{{ message }}</p>
+                {% endfor %}
+            </div>
+            <button class="btn bg-my-accent">Create Album</button>
+        </form>
+    </div>
+    <div class="w-full mt-3 flex flex-flow gap-3">
+        {% for album in all_albums %}
+        <div class="text-center bg-black rounded-lg text-white h-32 w-32 relative group flex flex-col justify-between">
+            {% if album.cover_image_url %}
+            <div class="flex flex-col justify-center">
+                <img src="{{ album.cover_image_url }}" alt="{{ album.name }}"
+                    class="object-cover w-full h-24 rounded-lg">
+            </div>
+            <div
+                class="text-white bg-black absolute top-0 left-0 w-full h-full rounded-lg justify-center items-center hidden group-hover:flex gap-1">
+                <a href="/admin/album/{{ album.id }}/edit" class="btn bg-my-secondary text-sm">Edit</a>
+                <a onclick="confirmDelete(album.id)" class="btn bg-my-danger text-sm">Delete</a>
+            </div>
+            {% else %}
+            <div class="flex flex-col gap-1 p-2">
+                <input class="cover-update" type="file" name="cover_image_url" id="cover_image_url"
+                url="/api/album/{{album.id}}/update">
+                <label class="p-1 bg-my-accent rounded-lg cursor-pointer text-sm" for="cover_image_url">Pick a Photo</label>
+                <a href="/admin/album/{{ album.id }}/edit" class="btn bg-my-secondary p-0 text-sm">Edit</a>
+                <button onclick="confirmDelete('{{ album.name }}', '{{ album.id }}', '/api/admin/album/{{album.id}}/delete')" class="btn p-0 bg-my-danger text-sm" id="{{album.id}}-{{album.name}}">Delete</button>
+            </div>
+            {% endif %}
+            <p>{{ album.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock admin_content %}
+
+{% block base_js %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock base_js %}
+
+
+
+<table class="w-full text-center">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Cover photo</th>
+            <th class="hidden lg:inline">Last Updated</th>
+            <th class="hidden lg:inline">Created On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for album in all_albums %}
+        <tr>
+            <td>{{ album.name }}</td>
+            <td>
+                {% if album.cover_image_url %}
+                <div class="flex justify-center ">
+                    <img src="{{ album.cover_image_url }}" alt="cover image" width="100px">
+                    <span class="cover-photo-delete cursor-pointer" album_id="{{ album.id }}">❌</span>
+                </div>
+                {% else %}
+                <div class="flex gap-3 justify-center">
+                    <input class="cover-update" type="file" name="cover_image_url" id="cover_image"
+                        url="/api/album/{{album.id}}/update">
+                </div>
+                {% endif %}
+            </td>
+            <td class="hidden lg:inline">{{ album.updated_at.strftime('%Y-%m-%d') }}</td>
+            <td class="hidden lg:inline">{{ album.created_at.strftime('%Y-%m-%d') }}</td>
+            <td class="">
+                <a href="/admin/album/{{album.id}}/edit" class="btn bg-my-secondary">Edit</a>
+                <a href="/admin/album/{{album.id}}/delete" class="btn bg-my-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

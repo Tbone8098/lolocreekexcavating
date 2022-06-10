@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+
+    <!-- include summernote css/js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <!-- my CSS -->
+    {% block base_css %}
+
+    {% endblock base_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+
+    <!-- tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'my-accent': '#ffb703',
+                        'my-danger': 'rgb(231, 109, 109)',
+                        'my-secondary': '#8ecae6',
+                        'my-dark': '#023047',
+                        // 'my-dark': '#000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+              body {
+                  font-size: 18px;
+              }
+            }
+          </style>
+
+    <title>Lolo Creek Excavating</title>
+</head>
+
+<body>
+    {% block bg_img %}
+    
+    {% endblock bg_img %}
+
+    <div class="page-wrapper flex flex-col min-h-screen">
+        <div class="mt-0">
+            {% block base_header %}
+            {% include 'components/header.html' %}
+            {% endblock base_header %}
+        </div>
+
+        <div class="mt-0 h-full">
+            {% block base_content %}
+            
+            {% endblock base_content %}
+        </div>
+
+        <div class="mt-auto">
+            {% block base_footer %}
+            {% include 'components/footer.html' %}
+            {% endblock base_footer %}
+        </div>
+    </div>
+
+    {% block modal %}
+        
+    {% endblock modal %}
+
+    <!-- my JS -->
+    {% block base_js %}
+
+    {% endblock base_js %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% set page = request.endpoint %}
+
+<div class="hidden md:flex justify-between mx-5 p-5 mt-9 bg-white items-center rounded-lg">
+    <img src="{{ business.company_logo }}" alt="logo" width="100px">
+    <ul class="flex gap-3">
+        <li><a class="{{ 'underline' if page in ['index'] else '' }}" href="/">Home</a></li>
+        <li><a class="{{ 'underline' if page in ['about_us'] else '' }}" href="/aboutus">About Us</a></li>
+        <li><a class="{{ 'underline' if page in ['services'] else '' }}" href="/services">Services</a></li>
+        <li><a class="{{ 'underline' if page in ['gallery', 'album_show', 'images_all'] else '' }}" href="/gallery">Gallery</a></li>
+        <li><a class="btn bg-black text-my-accent {{ 'shadow-lg shadow-my-accent' if page in ['contactus'] else '' }}" href="/contactus">Contact Us</a></li>
+    </ul>
+</div>
+
+<div class="block md:hidden">
+    <nav>
+        <div class="navbar">
+            <div class="container nav-container ">
+                <input class="checkbox" type="checkbox" name="" id="" />
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="logo mt-3">
+                    <a class="btn bg-black text-my-accent" href="/contactus">Contact Us</a>
+                </div>
+                <div class="menu-items bg-white border-r-2 border-black">
+                    <li><a class="{{ 'font-bold' if page in ['index'] else '' }}" href="/">Home</a></li>
+                    <li><a class="{{ 'font-bold' if page in ['about_us'] else '' }}" href="/aboutus">About Us</a></li>
+                    <li><a class="{{ 'font-bold' if page in ['services'] else '' }}" href="/services">Services</a></li>
+                    <li><a class="{{ 'font-bold' if page in ['gallery'] else '' }}" href="/gallery">Gallery</a></li>
+                    <li><a class="{{ 'font-bold animate-pulse' if page in ['contactus'] else '' }}" href="/contactus">Contact Us</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

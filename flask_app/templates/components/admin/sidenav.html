@@ -1,0 +1,18 @@
+<div class="bg-my-dark text-white h-full shadow-lg shadow-my-dark flex flex-col">
+    <ul class="pl-3 mt-0">
+        <li class="text-my-accent text-xl font-bold border-b-2 border-white">Site Info</li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/admin/business_info">Business Info</a></li>
+        <li><a href="/admin/services">Services</a></li>
+        <li><a href="/admin/gallery">Gallery</a></li>
+        <li><a class="text-gray-700 cursor-default">Employees (Coming Soon)</a></li>
+    </ul>
+    <ul class="pl-3 mt-auto">
+        <li class="text-my-accent text-xl font-bold border-b-2 border-slate-300">User Settings</li>
+        <li class="text-gray-100">
+            <a href="/admin/contact_the_dev">Contact The Dev</a>
+        </li>
+        <li class="text-gray-100"><a href="/admin/user/{{session['uuid']}}/edit">Settings</a></li>
+        <li><a class="text-my-danger" href="/logout">Logout</a></li>
+    </ul>
+</div>
