@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, session, request, flash, jsonify
-from flask_app.config.helpers import login_required
+from flask_app.config.helpers import login_required, send_mail
 
 from flask_app.models import model_message, model_user
 import os
@@ -37,7 +37,7 @@ def contact_the_dev_process():
         'level': 9,
     }
     model_message.Message.create(**db_data)
-    # send_mail(data)
+    send_mail(data)
     return redirect('/dashboard')
 
 @app.route('/send_email', methods=['post'])
@@ -66,7 +66,7 @@ def send_email():
         'level': 5,
     }
     model_message.Message.create(**db_data)
-    # send_mail(data)
+    send_mail(data)
     flash('Message Sent! Thank you for your interest. We will get back to you as soon as possible!', 'contact_us_message')
     return redirect('/contactus')
 
