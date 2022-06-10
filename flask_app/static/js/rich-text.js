@@ -11,6 +11,8 @@ $(document).ready(function () {
         lineWrapping: true,
         toolbar: [
             ['style', ['style']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
             ['font', ['bold', 'underline', 'clear']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
