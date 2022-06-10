@@ -12,7 +12,7 @@ class base_model:
         self.delete = lambda **data : self.__class__.delete(**data,id=self.id)
 
     @classmethod
-    def sanitize(self, paired=False, **data):
+    def sanitize(self, paired=False, is_where=False, **data):
         print(data)
         col1 = []
         col2 = []
@@ -24,7 +24,10 @@ class base_model:
             for i in range(len(col1)):
                 returnStr += f"{col1[i]} = {col2[i]}"
                 if i != len(col1) - 1:
-                    returnStr += ','
+                    if not is_where:
+                        returnStr += ','
+                    else:
+                        returnStr += ' and '
             return returnStr
         return ','.join(col1), ','.join(col2)
 
@@ -43,9 +46,16 @@ class base_model:
 # R ************************************************
 
     @classmethod
-    def get_all(cls):
-        query = f'SELECT * FROM {cls.table}'
-        results = connectToMySQL(DATABASE_SCHEMA).query_db(query)
+    def get_all(cls, is_where=False, **data):
+        print("**************")
+        print(data)
+        if is_where:
+            str = cls.sanitize(**data, paired=True, is_where=True)
+            query = f'SELECT * FROM {cls.table} WHERE {str}'
+            results = connectToMySQL(DATABASE_SCHEMA).query_db(query, data)
+        else:
+            query = f'SELECT * FROM {cls.table}'
+            results = connectToMySQL(DATABASE_SCHEMA).query_db(query)
         if results:
             all_table_name = []
             for table_name in results:

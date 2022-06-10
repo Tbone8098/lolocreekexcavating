@@ -1,1 +1,41 @@
 {% extends 'admin/base.html' %}
+
+{% block admin_header %}
+<h1 class="text-4xl">Dashboard</h1>
+{% endblock admin_header %}
+
+
+{% block admin_content %}
+<div class="col-span-5 mx-3">
+    <a href="" class="text-blue-500">See All Messages</a>
+    <div class="border-4 border-black shadow rounded-lg">
+        {% if all_messages %}
+        {% for message in all_messages %}
+        <div class="bg-my-dark text-white p-2 rounded flex justify-between">
+            {% if message.level == 9 %}
+            <h2 class="text-2xl">Bug Report</h2>
+            {% else %}
+            <h2 class="text-2xl">Incoming Message</h2>
+            {% endif %}
+            <div>
+                <span class="cursor-pointer text-2xl api-update" value="1" type="btn" trigger="click"
+                    name="is_completed" url="admin/message/{{ message.id }}/update">✔️</span>
+                <span class="cursor-pointer text-2xl api-update" trigger="click" name="is_completed"
+                    url="admin/message/{{ message.id }}/delete">❌</span>
+            </div>
+        </div>
+        <div>
+            <p class="bg-gray-300 shadow"><strong>From: </strong>{{ message.sender }}</p>
+            <p>{{ message.message }}</p>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center text-2xl">No new Messages</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock admin_content %}
+
+
+<input class="api-update" type="file" name="company_logo" id="company_logo" placeholder="About Us Image"
+    value="{{ business.company_logo }}" url="/api/business_info/{{ business.id }}/update">

@@ -39,8 +39,8 @@ class Image(model_base.base_model):
             flash('Field is Required', 'err_image_name')
 
         for key in files:
-            if files[key].content_type == 'application/octet-stream':
+            if files[key].content_type == 'application/octet-stream' and len(data['url']) < 1:
                 is_valid = False
                 flash('Image is required', 'err_image')
-        
+            
         return is_valid

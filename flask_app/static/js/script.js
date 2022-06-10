@@ -5,19 +5,26 @@ console.log(summernoteSubmit);
 
 if (apiUpdateEls) {
     for (const el of apiUpdateEls) {
-        el.addEventListener('change', function () {
+        trigger = el.getAttribute('trigger')
+        console.log(el);
+        el.addEventListener(trigger, function () {
             let content
             if (el.type === 'file') {
                 content = el.files[0]
-            } else {
+            } else if (el.type === 'input') {
                 content = el.value
+            } else if (el.getAttribute('type') === 'btn'){
+                content = el.getAttribute('value')
+                console.log(content);
             }
+
             let url = el.getAttribute('url')
             let name = el.getAttribute('name')
 
             let form = new FormData()
             form.append(name, content)
             updateDb(url, form)
+            window.location.reload()
         })
     }
 }

@@ -11,6 +11,7 @@
     {% endfor %}
     {% else %}
     <form class="flex flex-wrap gap-3 justify-center" action="/send_email" method="post">
+        <input type="hidden" name="ip_address" id="ip" class="ip_address">
         <input class="w-full md:w-80 shadow-lg" type="text" name="name" id="name" placeholder="Full Name">
         <input class="w-full md:w-80 shadow-lg" type="text" name="email" id="email" placeholder="Email">
         <textarea class="w-full shadow-lg" name="message" id="message" cols="30" rows="10"
@@ -21,3 +22,7 @@
     {% endwith %}
 </div>
 {% endblock base_content %}
+
+{% block base_js %}
+    <script src="{{ url_for('static', filename='js/ip.js') }}"></script>
+{% endblock base_js %}

@@ -13,6 +13,7 @@ class User(model_base.base_model):
         self.last_name = data['last_name']
         self.email = data['email']
         self.pw = data['pw']
+        self.level = data['level']
         self.fullname = f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
 
     @staticmethod

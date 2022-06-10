@@ -22,8 +22,11 @@ def album_add_photo(id):
         return redirect(f'/admin/album/{id}/edit')
 
     for key in request.files:
-        resp = cloudinaryUpload(request.files[key], f'/{album.name}', data['name'])
-        data['url'] = resp['url']
+        if request.files[key].content_type != 'application/octet-stream':
+            resp = cloudinaryUpload(request.files[key], f'/{album.name}', data['name'])
+            data['url'] = resp['url']
+        else:
+            data['url'] = request.form['url']
     
     data['user_id'] = session['uuid']
     image_id = model_image.Image.create(**data)
@@ -45,8 +48,14 @@ def album_edit(id):
 def album_update(id):
     if not model_album.Album.validate(request.form):
         return redirect(f'/admin/album/{id}/edit')
+
+    data = {**request.form}
+
+    if 'cover_image_url_2' in data:
+        data['cover_image_url'] = data['cover_image_url_2']
+        del data['cover_image_url_2']
     
-    model_album.Album.update_one(id=id, **request.form)
+    model_album.Album.update_one(id=id, **data)
     return redirect(f'/admin/album/{id}/edit')
 
 @app.route('/api/album/<int:id>/update', methods=['POST'])
