@@ -60,7 +60,7 @@ def edit_user(id):
 @login_required
 def update_user(id):
     if not model_user.User.validate_is_empty(request.form):
-        return redirect(f'/user/{id}/edit')
+        return redirect(f'/admin/user/{id}/edit')
     
     if 'pw' in request.form:
         user = model_user.User.get_one(id=id)
@@ -71,7 +71,7 @@ def update_user(id):
                 flash("Passwords don't match", 'err_user_confirm_pw')
 
     model_user.User.update_one(id=id, **request.form)
-    return redirect(f'/user/{id}/edit')
+    return redirect(f'/admin/user/{id}/edit')
 
 @app.route('/user/<int:id>/delete')
 def delete_user(id):
