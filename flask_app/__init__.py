@@ -5,7 +5,8 @@ import cloudinary
 app = Flask(__name__)
 app.secret_key = 'Whos your daddy? Goons your daddy!'
 
-DATABASE_SCHEMA = 'lolocreekexcavating_db'
+# DATABASE_SCHEMA = 'lolocreekexcavating_db'
+DATABASE_SCHEMA = 'hfrvkh6wwv1igdt6'
 
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
