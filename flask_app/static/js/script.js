@@ -47,3 +47,18 @@ async function updateDb(url, form) {
     resp = await resp.json()
     return resp
 }
+
+async function confirmDelete(name, id, url) {
+    resp = confirm(`Are you sure you want to delete the ${name}?`)
+    if (resp){
+        resp = await fetch(url)
+        resp = await resp.json()
+        console.log(resp.status);
+        if (resp.status === 200){
+            el = document.getElementById(`${id}-${name}`)
+            el.parentElement.parentElement.remove()
+        }
+    }
+}
+
+href="/admin/album/{{ album.id }}/delete"

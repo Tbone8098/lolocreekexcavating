@@ -7,6 +7,19 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
+from functools import wraps
+from flask import request, redirect, url_for, session
+
+def login_required(f):
+    @wraps(f)
+    def login_required(*args, **kwargs):
+        if 'uuid' not in session:
+            return redirect('/')
+        return f(*args, **kwargs)
+    return login_required
+
+
 def cloudinaryUpload(img, folder, public_id):
     cloudinary.config( 
         cloud_name = os.environ.get('CLOUD_NAME'), 
@@ -24,17 +37,10 @@ def cloudinaryUpload(img, folder, public_id):
     
 
 def send_mail(data):
-    sender = os.environ.get('EMAIL_ADDRESS')
-    reciver = os.environ.get('EMAIL_ADDRESS')
-    password = os.environ.get('EMAIL_PASSWORD')
-
-    message = f"""
-    Message from your friendly neigborhood website, \n
-    New Message From: {data['name']} | Email: {data['email']} \n
-    {data['message']} \n
-    \n
-    Sincerely, WebworkX
-    """
+    sender = data['sender']
+    receiver = data['receiver']
+    password = data['pw']
+    message = data['message']
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
@@ -42,6 +48,6 @@ def send_mail(data):
     server.login(sender, password)
     print("logged in")
 
-    server.sendmail(sender, reciver, message)
+    server.sendmail(sender, receiver, message)
     print("email sent")
 

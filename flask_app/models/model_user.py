@@ -12,6 +12,8 @@ class User(model_base.base_model):
         self.first_name = data['first_name']
         self.last_name = data['last_name']
         self.email = data['email']
+        self.pw = data['pw']
+        self.fullname = f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
 
     @staticmethod
     def validation(data:dict) -> bool:
@@ -75,3 +77,13 @@ class User(model_base.base_model):
 
         return is_valid
 
+    @staticmethod
+    def validate_is_empty(data):
+        is_valid = True
+
+        for key in data:
+            if len(data[key]) < 1:
+                is_valid = False
+                flash('Field Required', f'err_user_{key}')
+        
+        return is_valid

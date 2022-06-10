@@ -1,5 +1,6 @@
 from flask_app import app, bcrypt
 from flask import render_template, redirect, request, session, flash, jsonify
+from flask_app.config.helpers import login_required
 from flask_app.models import model_user, model_business_info
 
 @app.route('/login')
@@ -34,7 +35,8 @@ def create_user():
     hash = bcrypt.generate_password_hash(request.form['pw'])
     data = {
         **request.form,
-        'pw' : hash
+        'pw' : hash,
+        'level': 5
     }
     del data['confirm_pw']
 
@@ -46,23 +48,30 @@ def create_user():
 def show_user(id):
     pass 
 
-@app.route('/user/<int:id>/edit')
+@app.route('/admin/user/<int:id>/edit')
+@login_required
 def edit_user(id):
-    pass 
-
-@app.route('/user/<int:id>/update', methods=['post'])
-def update_user(id):
-
-    if not model_user.User.validation(request.form):
-        return redirect('/')
-
-    data = {
-        **request.form
+    context = {
+        'user': model_user.User.get_one(id=id)
     }
+    return render_template('admin/user_edit.html', **context)
 
-    model_user.User.update_one(id=id, **data)
+@app.route('/admin/user/<int:id>/update', methods=['post'])
+@login_required
+def update_user(id):
+    if not model_user.User.validate_is_empty(request.form):
+        return redirect(f'/user/{id}/edit')
+    
+    if 'pw' in request.form:
+        user = model_user.User.get_one(id=id)
+        if not bcrypt.check_password_hash(user.pw, request.form['old_pw']):
+            flash("Bad Old Password", 'err_user_old_pw')
+        else:
+            if request.form['pw'] != request.form['confirm_pw']:
+                flash("Passwords don't match", 'err_user_confirm_pw')
 
-    pass 
+    model_user.User.update_one(id=id, **request.form)
+    return redirect(f'/user/{id}/edit')
 
 @app.route('/user/<int:id>/delete')
 def delete_user(id):

@@ -7,8 +7,10 @@
     </ul>
     <ul class="pl-3 mt-auto">
         <li class="text-my-accent text-xl font-bold border-b-2 border-slate-300">User Settings</li>
-        <li class="text-gray-100">Message The Dev</li>
-        <li class="text-gray-100">Settings</li>
+        <li class="text-gray-100">
+            <a href="/admin/contact_the_dev">Contact The Dev</a>
+        </li>
+        <li class="text-gray-100"><a href="/admin/user/{{session['uuid']}}/edit">Settings</a></li>
         <li><a class="text-my-danger" href="/logout">Logout</a></li>
     </ul>
 </div>

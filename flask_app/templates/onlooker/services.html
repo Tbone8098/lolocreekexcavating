@@ -11,7 +11,7 @@
 {% block base_content %}
 <h1 class="text-4xl text-center my-3">Services</h1>
 <div class="mx-3 md:hidden reletive">
-    <div class="flex gap-3 flex-wrap justify-evenly">
+    <div class="grid grid-cols-2 gap-3">
         {% for service in all_services %}
         <div class="content-btn cursor-pointer rounded-lg py-5 px-1 text-center border-black border-2"
             info_section="{{ service.name }}">
@@ -30,9 +30,9 @@
     {% endfor %}
 </div>
 
-<div class="hidden md:grid grid-cols-12 gap-3">
+<div class="hidden md:grid grid-cols-4 gap-3 mx-5">
     {% for service in all_services %}
-    <div class="border-black border shadow-lg p-3 rounded-lg w-full col-span-10 col-start-2">
+    <div class="border-black border shadow-lg p-3 rounded-lg w-full">
         <h3 class="text-xl font-bold">{{ service.name }}</h3>
         {{ service.description | safe }}
     </div>
@@ -43,3 +43,4 @@
 {% block base_js %}
 <script src="{{ url_for('static', filename='js/services.js') }}"></script>
 {% endblock base_js %}
+

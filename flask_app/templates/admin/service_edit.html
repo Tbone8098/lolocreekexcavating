@@ -8,8 +8,8 @@
 {% endblock admin_header %}
 
 {% block admin_content %}
-    <div class="col-span-full flex justify-center items-center">
-        <form action="/admin/service/{{service.id}}/update" method="post">
+    <div class="col-span-6 col-start-4 flex justify-center items-center">
+        <form class="w-full" action="/admin/service/{{service.id}}/update" method="post">
             <div class="mb-3 flex flex-col">
                 <label for="name">Services Name</label>
                 <input type="text" name="name" id="name" value="{{ service.name }}">
@@ -31,19 +31,5 @@
 
 
 {% block base_js %}
-<script>
-    $(document).ready(function () {
-        $('#summernote').summernote({
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link']],
-            ]
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/rich-text.js') }}"></script>
 {% endblock base_js %}

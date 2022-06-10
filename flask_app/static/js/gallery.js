@@ -14,10 +14,6 @@ async function deleteCoverPhoto(btn) {
                                 url="/api/album/${albumId}/update">
         `
 
-    // parent.children[0].addEventListener('change', function () {
-    //     updateCover(parent.children[0])
-    // })
-
     let form = new FormData()
     form.append('cover_image_url', '')
 
@@ -35,21 +31,10 @@ var coverUpdate = document.querySelectorAll('.cover-update')
 
 for (const el of coverUpdate) {
     el.addEventListener('change', async function () {
-        console.log("*****");
         let resp = await updateCover(el)
-        console.log("&&&&");
         console.log(resp.status);
         if (resp.status == 200) {
             window.location.reload()
-            // console.log(el);
-            // el.innerHTML = `
-            // <img src="${resp.url}" alt="cover image" width="100px">
-            // <span class="cover-photo-delete cursor-pointer" album_id="${resp.id}">❌</span>
-            // `
-
-            // el.children[0].addEventListener('click', function(){
-            //     deleteCoverPhoto(el.children[0])
-            // })
         }
     })
 }

@@ -1,10 +1,11 @@
 from flask_app import app
-from flask_app.config.helpers import cloudinaryUpload
+from flask_app.config.helpers import cloudinaryUpload, login_required
 from flask import render_template, redirect, session, request, flash, jsonify
 
 from flask_app.models import model_album, model_image, model_albums_has_images, model_business_info
 
 @app.route('/admin/album/create', methods=['POST'])          
+@login_required
 def album_create():
     if not model_album.Album.validate(request.form):
         return redirect('/admin/gallery')
@@ -13,6 +14,7 @@ def album_create():
     return redirect('/admin/gallery')
 
 @app.route('/admin/album/<int:id>/add_photo', methods=['post'])          
+@login_required
 def album_add_photo(id):
     album = model_album.Album.get_one(id=id)
     data = {**request.form}
@@ -30,6 +32,7 @@ def album_add_photo(id):
     return redirect(f'/admin/album/{id}/edit')
 
 @app.route('/admin/album/<int:id>/edit')          
+@login_required
 def album_edit(id):
     context = {
         'album': model_album.Album.get_one(id=id),
@@ -37,9 +40,14 @@ def album_edit(id):
     }
     return render_template('admin/album_edit.html', **context)
 
-@app.route('/album/<int:id>/update', methods=['POST'])          
+@app.route('/admin/album/<int:id>/update', methods=['POST'])          
+@login_required
 def album_update(id):
-    return redirect('/')
+    if not model_album.Album.validate(request.form):
+        return redirect(f'/admin/album/{id}/edit')
+    
+    model_album.Album.update_one(id=id, **request.form)
+    return redirect(f'/admin/album/{id}/edit')
 
 @app.route('/api/album/<int:id>/update', methods=['POST'])
 def api_update(id):
@@ -60,9 +68,18 @@ def api_update(id):
     return jsonify(res)
 
 @app.route('/admin/album/<int:id>/delete')          
+@login_required
 def album_delete(id):
     model_album.Album.delete_one(id=id)
     return redirect('/admin/gallery')
+
+@app.route('/api/admin/album/<int:id>/delete')          
+def api_album_delete(id):
+    model_album.Album.delete_one(id=id)
+    res = {
+        'status': 200
+    }
+    return jsonify(res)
 
 
 @app.route('/album/<int:id>')

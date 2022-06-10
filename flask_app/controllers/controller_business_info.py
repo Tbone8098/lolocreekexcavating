@@ -1,10 +1,11 @@
 from flask_app import app
 from flask import render_template, redirect, session, request, jsonify
 from flask_app.models import model_business_info
-from flask_app.config.helpers import cloudinaryUpload
+from flask_app.config.helpers import cloudinaryUpload, login_required
 
 
 @app.route('/admin/business_info')          
+@login_required
 def business_info_new():
     business_info = model_business_info.BusinessInfo.get_all()
     context = {

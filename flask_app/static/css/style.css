@@ -18,7 +18,8 @@
 }
 
 /* inputs */
-input, textarea { 
+input,
+textarea {
     border: 1px solid rgb(180, 180, 180);
     border-radius: 0.25em;
     text-align: center;
@@ -28,12 +29,17 @@ input {
     height: 2em;
 }
 
+input[type='file'] {
+    display: none;
+}
+
 /* errors */
-.alert { 
+.alert {
     width: 100%;
     text-align: center;
     border-radius: 0.25em;
 }
+
 .alert-danger {
     background-color: rgb(231, 109, 109);
     color: white;
@@ -54,10 +60,12 @@ td {
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0%);
     }
 }
+
 .slide-out-left {
     animation: slide-out-left 0.3s linear forwards;
 }
@@ -66,6 +74,7 @@ td {
     from {
         transform: translateX(0%);
     }
+
     to {
         transform: translateX(-100%);
     }
