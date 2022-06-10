@@ -6,7 +6,7 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 
 class User(model_base.base_model):
-    table = 'Users'
+    table = 'users'
     def __init__(self, data):
         super().__init__(data)
         self.first_name = data['first_name']

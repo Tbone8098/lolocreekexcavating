@@ -3,8 +3,6 @@ from flask import render_template, redirect, request, session, flash, jsonify
 from flask_app.models import model_business_info, model_service, model_album, model_user, model_message
 from flask_app.config.helpers import login_required, send_mail
 
-
-
 @app.route('/')
 def index():
     business_info = model_business_info.BusinessInfo.get_all()

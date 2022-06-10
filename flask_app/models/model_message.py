@@ -5,7 +5,7 @@ from flask_app import DATABASE_SCHEMA
 import re
 
 class Message(model_base.base_model):
-    table = 'Messages'
+    table = 'messages'
     def __init__(self, data):
         super().__init__(data)
         self.message = data['message']

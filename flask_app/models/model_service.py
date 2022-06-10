@@ -5,7 +5,7 @@ from flask_app import DATABASE_SCHEMA
 import re
 
 class Service(model_base.base_model):
-    table = 'Services'
+    table = 'services'
     def __init__(self, data):
         super().__init__(data)
         self.name = data['name']

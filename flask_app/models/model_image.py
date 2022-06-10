@@ -4,7 +4,7 @@ from flask_app.models import model_base, model_albums_has_images
 from flask_app import DATABASE_SCHEMA
 
 class Image(model_base.base_model):
-    table = 'Images'
+    table = 'images'
     def __init__(self, data):
         super().__init__(data)
         self.url = data['url']
