@@ -5,7 +5,7 @@ from flask_app import DATABASE_SCHEMA
 import re
 
 class BusinessInfo(model_base.base_model):
-    table = 'Business_info'
+    table = 'business_info'
     def __init__(self, data):
         super().__init__(data)
         self.address = data['address']
