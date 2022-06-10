@@ -32,7 +32,7 @@
                         <label for="cover_image_url" class="btn bg-my-secondary cursor-pointer">Upload Photo</label>
                     </div>
                     <p class="mr-1"><strong>OR</strong></p>
-                    <input type="text" name="cover_image_url_2" placeholder="Photo URL">
+                    <input type="text" name="cover_image_url_2" placeholder="Image Link">
                 </div>
                 {% endif %}
             </div>
@@ -64,8 +64,9 @@
         enctype="multipart/form-data">
         <input type="file" name="photo" id="photo">
         <label for="photo" class="btn bg-my-accent cursor-pointer">Upload Photo</label>
-        <p><strong>OR</strong></p>
-        <input type="text" name="url" placeholder="Photo URL">
+        <p class="text-center"><strong>OR</strong></p>
+        <p class="text-center">copy image link</p>
+        <input type="text" name="url" placeholder="Image Link">
         {% for message in get_flashed_messages(category_filter=["err_image"]) %}
         <p class="alert alert-danger">{{ message }}</p>
         {% endfor %}
@@ -75,7 +76,7 @@
         <p class="alert alert-danger">{{ message }}</p>
         {% endfor %}
         <label for="description">Photo Description (255 Characters)</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" maxlength="255"></textarea>
         <!-- <input type="text" name="description" id="description"> -->
         <button class="btn bg-my-dark text-white">Add Photo</button>
     </form>
