@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
+{% block base_head %}
+<link rel="preload" as="image" href="{{ business.company_logo }}">
+{% endblock base_head %}
+
+{% block base_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+{% endblock base_css %}
+
 {% block bg_img %}
 <img class="bg__img" src="{{ business.front_page_img }}" alt="">
 {% endblock bg_img %}
 
 {% block base_content %}
+<!-- <div class="page-load fade-out flex justify-center items-center">
+    <div class="animate-bounce md:w-6/12 bg-my-accent page-logo">
+        <img src="{{ business.company_logo }}" alt="company logo" class="">
+    </div>
+</div> -->
 <div class="grid grid-cols-12 gap-3 mt-5">
     <div class="col-span-10 md:col-span-5 col-start-2 md:col-start-2 flex justify-center bg-white/50 border-2 border-black p-3 rounded-lg">
         <img src="{{ business.company_logo }}" alt="logo" width="200px">

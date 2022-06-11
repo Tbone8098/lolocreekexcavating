@@ -3,10 +3,10 @@
 <div class="hidden md:flex justify-between mx-5 p-5 mt-9 bg-white items-center rounded-lg">
     <img src="{{ business.company_logo }}" alt="logo" width="100px">
     <ul class="flex gap-3">
-        <li><a class="{{ 'underline' if page in ['index'] else '' }}" href="/">Home</a></li>
-        <li><a class="{{ 'underline' if page in ['about_us'] else '' }}" href="/aboutus">About Us</a></li>
-        <li><a class="{{ 'underline' if page in ['services'] else '' }}" href="/services">Services</a></li>
-        <li><a class="{{ 'underline' if page in ['gallery', 'album_show', 'images_all'] else '' }}" href="/gallery">Gallery</a></li>
+        <li class="hover:animate-bounce"><a class=" {{ 'underline' if page in ['index'] else '' }}" href="/">Home</a></li>
+        <li class="hover:animate-bounce"><a class=" {{ 'underline' if page in ['about_us'] else '' }}" href="/aboutus">About Us</a></li>
+        <li class="hover:animate-bounce"><a class=" {{ 'underline' if page in ['services'] else '' }}" href="/services">Services</a></li>
+        <li class="hover:animate-bounce"><a class=" {{ 'underline' if page in ['gallery', 'album_show', 'images_all'] else '' }}" href="/gallery">Gallery</a></li>
         <li><a class="btn bg-black text-my-accent {{ 'shadow-lg shadow-my-accent' if page in ['contactus'] else '' }}" href="/contactus">Contact Us</a></li>
     </ul>
 </div>
