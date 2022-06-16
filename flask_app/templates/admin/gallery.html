@@ -23,7 +23,7 @@
             <button class="btn bg-my-accent">Create Album</button>
         </form>
     </div>
-    <div class="w-full mt-3 flex flex-flow gap-3">
+    <div class="w-full mt-3 flex flex-wrap gap-3">
         {% for album in all_albums %}
         <div class="text-center bg-black rounded-lg text-white h-32 w-32 relative group flex flex-col justify-between">
             {% if album.cover_image_url %}

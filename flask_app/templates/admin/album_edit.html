@@ -1,5 +1,11 @@
 {% extends 'admin/base.html' %}
 
+{% block base_head %}
+{% for photo in all_photos %}
+<link rel="preload" as="image" href="{{ photo.url }}">
+{% endfor %}
+{% endblock base_head %}
+
 {% block admin_header %}
 <h1 class="text-4xl"><strong>Album: </strong> {{ album.name }}</h1>
 {% endblock admin_header %}
