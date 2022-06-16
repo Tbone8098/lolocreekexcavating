@@ -28,7 +28,7 @@
             <div
                 class="text-white bg-black absolute top-0 left-0 w-full h-full rounded-lg justify-center items-center hidden group-hover:flex gap-1">
                 <a href="/admin/album/{{ album.id }}/edit" class="btn bg-my-secondary text-sm">Edit</a>
-                <a onclick="confirmDelete(album.id)" class="btn bg-my-danger text-sm">Delete</a>
+                <button onclick="confirmDelete('{{ album.name }}', '{{ album.id }}', '/api/admin/album/{{album.id}}/delete')" class="btn bg-my-danger text-sm cursor-pointer" id="{{album.id}}-{{album.name}}">Delete</button>
             </div>
             {% else %}
             <div class="flex flex-col gap-1 p-2">
@@ -36,7 +36,7 @@
                 url="/api/album/{{album.id}}/update">
                 <label class="p-1 bg-my-accent rounded-lg cursor-pointer text-sm" for="cover_image_url">Pick a Photo</label>
                 <a href="/admin/album/{{ album.id }}/edit" class="btn bg-my-secondary p-0 text-sm">Edit</a>
-                <button onclick="confirmDelete('{{ album.name }}', '{{ album.id }}', '/api/admin/album/{{album.id}}/delete')" class="btn p-0 bg-my-danger text-sm" id="{{album.id}}-{{album.name}}">Delete</button>
+                <button onclick="confirmDelete('{{ album.name }}', '{{ album.id }}', '/api/admin/album/{{album.id}}/delete')" class="btn p-0 bg-my-danger text-sm cursor-pointer" id="{{album.id}}-{{album.name}}">Delete</button>
             </div>
             {% endif %}
             <p>{{ album.name }}</p>

@@ -21,12 +21,12 @@ def logout():
     del session['uuid']
     return redirect('/')
 
-# @app.route('/register')
-# def register():
-#     context = {
-#         'business': model_business_info.BusinessInfo.get_all()[0]
-#     }
-#     return render_template('/admin/register.html', **context)
+@app.route('/register')
+def register():
+    context = {
+        'business': model_business_info.BusinessInfo.get_all()[0]
+    }
+    return render_template('/admin/register.html', **context)
 
 @app.route('/user/create', methods=['post'])
 def create_user():
