@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block base_head %}
+{% for photo in all_photos %}
+<link rel="preload" as="image" href="{{ photo.url }}">
+{% endfor %}
+{% endblock base_head %}
+
 {% block base_content %}
 <div class="mx-5">
     <div class="grid grid-cols-3 my-3 items-center">
